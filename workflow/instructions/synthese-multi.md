@@ -231,7 +231,7 @@ Create a cross-project summary of what happened in **all projects** over a given
    - Custom period
 
 **2b — Scan journals and TODOs from all projects**
-2. For each discovered project, read two types of files — both in active (`docs/journal/`) and archived (`docs/archives/journal/`) locations:
+2. For each discovered project, read two types of files — both in active (`docs/journal/`) and archived (`archives-<project>/archives-<project>-journal/`) locations:
    - **User memory** (primary source): files matching `*synthese-journal*.md`
    - **Agent collective memory** (secondary source): files matching `*resume-session*.md`
    - ⚠️ **Never read raw notes** — ignore all other files
@@ -274,7 +274,7 @@ date: YYYY-MM-DD
 ```
 
 **2f — Archive TODOs and include consolidated snapshot**
-8. For each discovered project, archive `TODO.md` → `docs/archives/todo/YYMMDD-HHhmm-TODO.md` (same timestamp as the global synthesis). Create `docs/archives/todo/` if absent.
+8. For each discovered project, archive `TODO.md` → `archives-<project>/archives-<project>-todo/YYMMDD-HHhmm-TODO.md` (same timestamp as the global synthesis). Exact path defined in each project's CLAUDE.md.
 
 9. Append to the global synthesis file created in 2e:
 

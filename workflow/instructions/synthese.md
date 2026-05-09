@@ -121,7 +121,7 @@ date: YYYY-MM-DD
 [contenu intégral de TODO.md]
 ```
 
-2. Archiver `TODO.md` → `docs/archives/todo/YYMMDD-HHhmm-TODO.md` (copie à l'identique, même horodatage que la synthèse). Créer `docs/archives/todo/` si absent.
+2. Archiver `TODO.md` → `archives-<projet>/archives-<projet>-todo/YYMMDD-HHhmm-TODO.md` (copie à l'identique, même horodatage que la synthèse). Le chemin exact est défini dans le CLAUDE.md du projet.
 
 3. Ajouter une ligne dans `docs/journal/index-journal.md` :
 
@@ -129,9 +129,9 @@ date: YYYY-MM-DD
 | YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
 ```
 
-4. Mettre à jour `C:\Users\Guillaume\Documents\Atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
+4. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
 
-5. Mettre à jour `C:\Users\Guillaume\Documents\Atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
+5. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
 
 ---
 
@@ -186,19 +186,20 @@ dates_couvertes: YYYY-MM-DD à YYYY-MM-DD
 (lien relatif — les fichiers sont dans le même dossier `YYYY-MM-DD/`)
 
 **3d — Archiver les dossiers datés (ACTION CRITIQUE)**
-4. Déplacer les dossiers **entiers** (synthèse incluse) dans `docs/archives/journal/` :
-   - `docs/journal/YYYY-MM-DD/` → `docs/archives/journal/YYYY-MM-DD/`
-   - Mettre à jour le lien dans `index-journal.md` : `[[YYYY-MM-DD/...]]` → `[[../archives/journal/YYYY-MM-DD/...]]`
+4. Déplacer les dossiers **entiers** (synthèse incluse) dans `archives-<projet>/archives-<projet>-journal/` :
+   - `docs/journal/YYYY-MM-DD/` → `archives-<projet>/archives-<projet>-journal/YYYY-MM-DD/`
+   - Mettre à jour le lien dans `index-journal.md` en conséquence
+   - Le chemin exact est défini dans le CLAUDE.md du projet
    - ⚠️ **Vérification** : `docs/journal/` ne doit contenir que `index-journal.md` (plus de dossiers datés actifs)
 
 **3e — Mettre à jour latest-syntheses.md**
-5. Mettre à jour `C:\Users\Guillaume\Documents\Atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier, la date, et le lien `obsidian://open?vault=<nom-du-vault>&file=<chemin-encodé>`.
+5. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier, la date, et le lien `obsidian://open?vault=<nom-du-vault>&file=<chemin-encodé>`.
 
 **3f — Mettre à jour Dashboard.md**
-6. Mettre à jour `C:\Users\Guillaume\Documents\Atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
+6. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
 
 **3g — Archiver TODO.md et inclure le snapshot dans la synthèse**
-7. Archiver `TODO.md` → `docs/archives/todo/YYMMDD-HHhmm-TODO.md` (même horodatage que la synthèse). Créer `docs/archives/todo/` si absent.
+7. Archiver `TODO.md` → `archives-<projet>/archives-<projet>-todo/YYMMDD-HHhmm-TODO.md` (même horodatage que la synthèse). Le chemin exact est défini dans le CLAUDE.md du projet.
 8. Ajouter en fin du fichier de synthèse créé en 3a :
 
 ```markdown
@@ -216,7 +217,7 @@ dates_couvertes: YYYY-MM-DD à YYYY-MM-DD
 
 ## Mise à jour de Dashboard.md
 
-Fichier : `C:\Users\Guillaume\Documents\Atelier\Dashboard.md`
+Fichier : `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md`
 
 ### Ce qu'il faut mettre à jour
 

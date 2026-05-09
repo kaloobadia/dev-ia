@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journal/index-journal.md",
+                "file": "projects/STATUS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index-journal"
+              "title": "STATUS"
             }
           }
         ]
@@ -183,8 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "ff4a01bc7779c2c6",
+  "active": "8d65f75ee72e9220",
   "lastOpenFiles": [
+    "workflow/instructions/sedO3U5bD",
+    "workflow/instructions/sedO5a2WM",
     "commands/synthese-multi.md",
     "commands/synthese.md",
     "commands/README.md",
