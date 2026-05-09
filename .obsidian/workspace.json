@@ -1,0 +1,198 @@
+{
+  "main": {
+    "id": "f999c77e7a5d7c61",
+    "type": "split",
+    "children": [
+      {
+        "id": "8fe8d18e792d353c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ff4a01bc7779c2c6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "journal/index-journal.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "index-journal"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d8f5a3808a6af395",
+    "type": "split",
+    "children": [
+      {
+        "id": "2902d9087026fa05",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d65f75ee72e9220",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "617eaa42971cc8b9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "4ab46870c9503455",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8dfeb62d35decf5b",
+    "type": "split",
+    "children": [
+      {
+        "id": "1f135819acffb0dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "436de36443f915d4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "journal/index-journal.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for index-journal"
+            }
+          },
+          {
+            "id": "a8b5110652ea414a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "journal/index-journal.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from index-journal"
+            }
+          },
+          {
+            "id": "c26a743c76192962",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "700400e30b2d7cb0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "6d78ec8e1dfe4118",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "journal/index-journal.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of index-journal"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "ff4a01bc7779c2c6",
+  "lastOpenFiles": [
+    "commands/synthese-multi.md",
+    "commands/synthese.md",
+    "commands/README.md",
+    "STATUS.md",
+    "journal/index-journal.md",
+    "journal/260509-09h34-resume-session-claude.md",
+    "journal/260509-09h26-briefing-agents.md",
+    "journal/2026/05/09/260509-09h14-decision-unification-structure-temporelle.md",
+    "journal/2026/05/09/260509-09h02-optimisation-systeme-documentaire.md"
+  ]
+}

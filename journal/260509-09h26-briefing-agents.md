@@ -36,8 +36,3 @@ Ne jamais y accumuler des notes ou décisions. Les briefings et décisions vont 
 Contient : statut projets, dépendances, prochaines étapes immédiates, date de dernière mise à jour.
 Ne contient pas : historique de décisions, briefings, notes de session.
 
-## Jonctions NTFS
-
-`.claude/` dans homelab-tracker = dossier ordinaire (junction supprimée).
-`.gemini/` dans homelab-tracker = junction active → `gemini/`.
-Ne pas créer de nouvelles jonctions — source de confusion pour les agents.
