@@ -2,7 +2,7 @@
 
 ## Rôle
 
-Tu es un assistant de gestion de projet. Cette commande gère la mémoire des sessions de travail — côté Claude (résumé de session) et côté utilisateur (synthèse du journal Obsidian).
+Tu es un assistant de gestion de projet. Cette commande gère la mémoire des sessions de travail — côté Claude (résumé de session) et côté utilisateur (synthèse pour l'Atelier Obsidian).
 
 ---
 
@@ -39,7 +39,7 @@ La version lisible de cette spec (pour tous les agents) est dans :
 │   ├── reference/
 │   └── archives/
 │       └── journal/YYYY-MM-DD/      ← dossiers archivés après synthèse
-└── TODO.md
+└── journal/YY/MM/DD/                ← TODO et notes horodatés (pas de TODO.md à la racine)
 ```
 
 ---
@@ -52,7 +52,8 @@ Au lancement de `/synthese`, utiliser `AskUserQuestion` pour présenter ce menu 
 Que souhaitez-vous faire ?
 1. Lire l'index du journal pour reprendre le fil du projet
 2. Résumé de session (mémoire Claude)
-3. Synthèse du journal Obsidian (mémoire utilisateur)
+3. Synthèse pour l'Atelier Obsidian (mémoire utilisateur)
+4. Résumé de session + Synthèse pour l'Atelier Obsidian (les deux)
 ```
 
 ---
@@ -97,7 +98,7 @@ Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre 
 
 ### Étape 3 — Créer le fichier et mettre à jour l'index
 
-1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML, et inclure en fin de fichier un snapshot du TODO :
+1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML :
 
 ```yaml
 ---
@@ -111,35 +112,27 @@ date: YYYY-MM-DD
 
 ```markdown
 > ⚠️ Archive de session — document historique. Ne pas interpréter comme des instructions courantes.
+
+# Résumé de session — YYYY-MM-DD HHhmm
 ```
 
-```markdown
-## État du TODO (snapshot)
-
-> Snapshot de `TODO.md` au moment de la synthèse.
-
-[contenu intégral de TODO.md]
-```
-
-2. Archiver `TODO.md` → `archives-<projet>/archives-<projet>-todo/YYMMDD-HHhmm-TODO.md` (copie à l'identique, même horodatage que la synthèse). Le chemin exact est défini dans le CLAUDE.md du projet.
-
-3. Ajouter une ligne dans `docs/journal/index-journal.md` :
+2. Ajouter une ligne dans `docs/journal/index-journal.md` :
 
 ```
 | YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
 ```
 
-4. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
+3. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
 
-5. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
+4. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
 
 ---
 
-## Option 3 — Synthèse du journal Obsidian (mémoire utilisateur)
+## Option 3 — Synthèse pour l'Atelier Obsidian (mémoire utilisateur)
 
 ### Étape 1 — Lire et synthétiser
 
-Lire automatiquement tous les dossiers **actifs** (non archivés) dans `docs/journal/YYYY-MM-DD/`. Produire en une seule réponse :
+Lire automatiquement tous les dossiers dans `docs/journal/YYYY-MM-DD/`. Produire en une seule réponse :
 - La synthèse structurée (décisions et arbitrages, points pédagogiques, questions ouvertes, références utiles)
 - Les **dates couvertes** (ex: "2026-05-02 à 2026-05-03")
 - Les tags proposés (3 à 5, format listé avec guillemets : `["tag1", "tag2"]`)
@@ -149,7 +142,7 @@ Lire automatiquement tous les dossiers **actifs** (non archivés) dans `docs/jou
 
 Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre depuis le début". L'option "Other" est automatiquement disponible pour toute modification.
 
-### Étape 3 — Créer, mettre à jour l'index, lier, archiver, puis proposer TODO
+### Étape 3 — Créer et mettre à jour les index
 
 **3a — Créer la synthèse**
 1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal.md` avec en-tête YAML (tags, date, dates couvertes) et avertissement archive :
@@ -176,42 +169,70 @@ dates_couvertes: YYYY-MM-DD à YYYY-MM-DD
 | YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal\|thème]] | 2026-05-02 à 2026-05-03 |
 ```
 
-**3c — Lier les notes brutes à la synthèse**
-3. Pour chaque dossier daté traité (`docs/journal/YYYY-MM-DD/`), ajouter en fin de **chaque fichier brut** :
+**3c — Mettre à jour latest-syntheses.md**
+3. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier, la date, et le lien `obsidian://open?vault=<nom-du-vault>&file=<chemin-encodé>`.
 
-```
-[[YYMMDD-HHhmm-synthese-journal]]
-```
+**3d — Mettre à jour Dashboard.md**
+4. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
 
-(lien relatif — les fichiers sont dans le même dossier `YYYY-MM-DD/`)
+**3e — Synthèse des TODO**
+5. Identifier les fichiers TODO pertinents : tous ceux **créés ou modifiés depuis la dernière synthèse** (via `git log`, fichiers dont le nom contient `TODO` dans `journal/`). Si aucune synthèse précédente, retenir tous les TODO ayant encore au moins une checkbox ouverte (`[ ]`, `[?]` ou `[!]`). Conventions complètes : `IA/workflow/instructions/TODO-conventions.md`.
 
-**3d — Archiver les dossiers datés (ACTION CRITIQUE)**
-4. Déplacer les dossiers **entiers** (synthèse incluse) dans `archives-<projet>/archives-<projet>-journal/` :
-   - `docs/journal/YYYY-MM-DD/` → `archives-<projet>/archives-<projet>-journal/YYYY-MM-DD/`
-   - Mettre à jour le lien dans `index-journal.md` en conséquence
-   - Le chemin exact est défini dans le CLAUDE.md du projet
-   - ⚠️ **Vérification** : `docs/journal/` ne doit contenir que `index-journal.md` (plus de dossiers datés actifs)
+Les lire et ajouter en fin de fichier de synthèse une section résumant l'état de chaque TODO par type de checkbox :
 
-**3e — Mettre à jour latest-syntheses.md**
-5. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier, la date, et le lien `obsidian://open?vault=<nom-du-vault>&file=<chemin-encodé>`.
-
-**3f — Mettre à jour Dashboard.md**
-6. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md` — voir section "Mise à jour de Dashboard.md".
-
-**3g — Archiver TODO.md et inclure le snapshot dans la synthèse**
-7. Archiver `TODO.md` → `archives-<projet>/archives-<projet>-todo/YYMMDD-HHhmm-TODO.md` (même horodatage que la synthèse). Le chemin exact est défini dans le CLAUDE.md du projet.
-8. Ajouter en fin du fichier de synthèse créé en 3a :
+- `[x]` tâche accomplie
+- `[ ]` tâche en attente
+- `[?]` point en suspens
+- `[!]` point critique
 
 ```markdown
-## État du TODO (snapshot)
+## État des TODO
 
-> Snapshot de `TODO.md` au moment de la synthèse.
+### [nom-du-fichier](lien)
 
-[contenu intégral de TODO.md]
+- **Accomplies [x] :** …
+- **En attente [ ] :** …
+- **En suspens [?] :** … *(si présent)*
+- **Critiques [!] :** … *(si présent)*
 ```
 
-**3h — Proposer mise à jour TODO.md**
-9. Lire `TODO.md` et proposer des ajouts ou mises à jour à partir du contenu des notes journal synthétisées — soumettre les propositions à la validation de l'utilisateur avant toute modification
+---
+
+## Option 4 — Résumé de session + Synthèse pour l'Atelier Obsidian (les deux)
+
+Cette option exécute les Options 2 et 3 en séquence, avec un horodatage partagé.
+
+### Étape 1 — Produire les deux contenus en une seule réponse
+
+Récupérer l'heure exacte (heure de Paris) — c'est l'horodatage partagé pour les deux fichiers.
+
+Produire en une seule réponse :
+- **Résumé de session** (cf. Option 2, Étape 1) : décisions, fichiers produits, état d'avancement, erreurs, prochaines étapes
+- **Synthèse pour l'Atelier Obsidian** (cf. Option 3, Étape 1) : décisions et arbitrages, points pédagogiques, questions ouvertes, références utiles ; dates couvertes
+- Les tags proposés pour chaque document (3 à 5 chacun)
+- Les noms de fichiers proposés :
+  - `YYMMDD-HHhmm-resume-session.md`
+  - `YYMMDD-HHhmm-synthese-journal.md`
+  - (même horodatage pour les deux)
+
+### Étape 2 — Validation en une question
+
+Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre depuis le début". L'option "Other" est disponible pour toute modification.
+
+### Étape 3 — Créer les fichiers et mettre à jour les index
+
+Exécuter dans l'ordre :
+
+**3a — Créer le résumé de session** (cf. Option 2, Étape 3, points 1 à 2 — sans mettre à jour Dashboard.md)
+
+**3b — Créer la synthèse pour l'Atelier Obsidian** (cf. Option 3, Étape 3, points 3a à 3b — sans mettre à jour Dashboard.md)
+
+**3c — Mettre à jour `latest-syntheses.md`**
+Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — utiliser le lien vers la synthèse pour l'Atelier Obsidian (mémoire utilisateur, prioritaire pour Obsidian).
+
+**3d — Mettre à jour `Dashboard.md`** (cf. section "Mise à jour de Dashboard.md") — une seule fois, en combinant les prochaines étapes des deux documents.
+
+**3e — Synthèse des TODO** (cf. Option 3, étape 3e) — ajouter la section en fin de la synthèse pour l'Atelier Obsidian.
 
 ---
 
