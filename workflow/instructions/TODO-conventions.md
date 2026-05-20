@@ -4,6 +4,16 @@ Applicable à tous les projets. Les fichiers TODO sont horodatés et journalisé
 
 ---
 
+## Règle — TODO avant implémentation
+
+Tout plan validé par l'utilisateur doit être suivi d'un fichier TODO horodaté **avant** le début de l'implémentation.
+
+Séquence obligatoire : **plan → TODO → implémentation**.
+
+Les TODO a posteriori (créés après coup pour tracer ce qui a déjà été fait) sont à proscrire. Ils contournent la planification et réduisent la traçabilité. Si un plan a été exécuté sans TODO préalable, signaler l'écart dans le résumé de session et ne pas créer de TODO a posteriori.
+
+---
+
 ## États des checkbox
 
 | Marqueur | Signification |
