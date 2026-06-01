@@ -82,6 +82,19 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /c/Users/Guillaume/.claude/sync-config.sh"
+          }
+        ]
+      }
+    ]
+  },
   "enableWorkflows": true,
   "statusLine": {
     "type": "command",
