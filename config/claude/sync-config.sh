@@ -10,9 +10,21 @@ REPO="/c/Users/Guillaume/Documents/dev/IA"
 cp "$SRC/CLAUDE.md"     "$DEST/CLAUDE.md"     2>/dev/null
 cp "$SRC/settings.json" "$DEST/settings.json" 2>/dev/null
 
-# Sync dossiers (rsync avec suppression des fichiers obsolètes)
-rsync -a --delete "$SRC/commands/" "$DEST/commands/" 2>/dev/null
-rsync -a --delete "$SRC/agents/"   "$DEST/agents/"   2>/dev/null
+# Sync dossiers (cp + suppression des fichiers obsolètes)
+sync_dir() {
+  local src="$1" dest="$2"
+  mkdir -p "$dest"
+  # Copier les fichiers source
+  for f in "$src"/*; do
+    [ -f "$f" ] && cp "$f" "$dest/"
+  done
+  # Supprimer les fichiers dans dest qui n'existent plus dans src
+  for f in "$dest"/*; do
+    [ -f "$f" ] && [ ! -f "$src/$(basename "$f")" ] && rm "$f"
+  done
+}
+sync_dir "$SRC/commands" "$DEST/commands"
+sync_dir "$SRC/agents"   "$DEST/agents"
 
 # Vérifier s'il y a des changements à commiter
 cd "$REPO" || exit 0
