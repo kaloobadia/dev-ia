@@ -14,6 +14,7 @@ La version lisible de cette spec (pour tous les agents) est dans :
 **Synchronisation** : toute modification de ce fichier doit être répercutée dans :
 - `IA/workflow/instructions/synthese.md` (référence lisible)
 - `IA/config/claude/commands/synthese.md` (copie versionnée de la commande)
+- `.agents/commands/synthese.md` (copie projet-racine)
 
 ---
 
@@ -30,28 +31,54 @@ La version lisible de cette spec (pour tous les agents) est dans :
 
 ```
 <projet>/
+├── CLAUDE.md                        ← à la racine du projet
+├── index-journal.md                 ← index des synthèses (racine projet)
+├── TODO.md                          ← TODO courant (mis à jour en continu)
 ├── .claude/
 │   └── settings.local.json
-├── CLAUDE.md                        ← à la racine du projet
 ├── docs/
-│   ├── journal/
-│   │   ├── index-journal.md         ← index des synthèses
-│   │   └── YYYY-MM-DD/              ← dossiers actifs (notes brutes + synthèses)
-│   │       └── YYMMDD-HHhmm-synthese-journal.md
-│   ├── reference/
-│   └── archives/
-│       └── journal/YYYY-MM-DD/      ← dossiers archivés après synthèse
-└── journal/YY/MM/DD/                ← TODO et notes horodatés (pas de TODO.md à la racine)
+│   └── reference/
+└── journal/YY/MM/DD/                ← notes brutes, snapshots TODO, resume-session ET synthèses
+    └── YYMMDD-HHhmm-synthese-journal.md
 ```
+
+---
+
+## Pré-amble — Checkpoint de session
+
+Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options. **Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+
+### Étape A — Checkpoint git
+
+Exécuter `git status`. Signaler tout écart notable : fichiers non commités, conflits, état du build si pertinent.
+
+### Étape B — Note de journal
+
+Proposer de créer une note de journal horodatée (TZ=Paris) résumant la session en cours.
+
+Conventions : `journal/YY/MM/DD/YYMMDD-HHhmm-<theme>.md`, cf. section "Fichiers du type Note de journal" dans CLAUDE.md.
+
+Utiliser `AskUserQuestion` : "Créer une note de journal ?" avec options Oui / Passer.
+
+### Étape C — Mise à jour du TODO
+
+Chercher un TODO actif dans cet ordre de priorité :
+1. `TODO.md` à la racine du projet (s'il existe et contient au moins une checkbox ouverte)
+2. Sinon, le fichier le plus récent dans `journal/` dont le nom contient `TODO` et ayant au moins une checkbox ouverte (`[ ]`, `[?]`, `[!]`)
+
+**Si un TODO actif est trouvé :** le lire et proposer des modifications en fonction de l'avancement constaté. Utiliser `AskUserQuestion` : "Mettre à jour le TODO ?" avec options Oui / Passer. Soumettre les propositions à validation avant toute écriture.
+
+**Si aucun TODO actif n'est trouvé :** utiliser `AskUserQuestion` : "Aucun TODO actif trouvé. Créer un nouveau TODO ?" avec options Oui / Passer. Si Oui, créer `TODO.md` à la racine du projet avec un squelette de tâches basé sur le contexte de la session en cours, soumis à validation avant écriture.
 
 ---
 
 ## Démarrage — Choix de l'option
 
-Au lancement de `/synthese`, utiliser `AskUserQuestion` pour présenter ce menu :
+Au lancement de `/synthese`, après le pré-amble, utiliser `AskUserQuestion` pour présenter ce menu :
 
 ```
 Que souhaitez-vous faire ?
+0. Triage des TODO + mise à jour de l'index
 1. Lire l'index du journal pour reprendre le fil du projet
 2. Résumé de session (mémoire Claude)
 3. Synthèse pour l'Atelier Obsidian (mémoire utilisateur)
@@ -60,9 +87,69 @@ Que souhaitez-vous faire ?
 
 ---
 
+## Option 0 — Triage des TODO + mise à jour de l'index
+
+### Étape 1 — Collecter les TODO actifs
+
+Chercher les TODO actifs dans deux emplacements :
+1. `TODO.md` à la racine du projet (s'il existe et contient au moins une checkbox ouverte)
+2. `journal/` récursivement : fichiers `*.md` dont le nom contient `TODO`, hors dossier `archive/`
+
+Pour chaque fichier retenu, compter les tâches ouvertes (`[ ]`, `[?]`, `[!]`). Ignorer les fichiers sans tâche ouverte. Présenter `TODO.md` racine en premier (s'il existe), puis les fichiers `journal/` triés par âge décroissant (le plus ancien en premier).
+
+### Étape 2 — Triage tâche par tâche
+
+Pour chaque fichier TODO, afficher : nom du fichier, âge, nombre de tâches ouvertes. Compteur de progression "TODO N / total".
+
+Utiliser `AskUserQuestion` avec les options :
+- "Passer ce fichier"
+- "Trier tâche par tâche"
+
+Si "Trier tâche par tâche" : pour chaque tâche ouverte (texte affiché), utiliser `AskUserQuestion` :
+- "Clôturer [x]"
+- "Garder"
+
+Écrire le fichier modifié immédiatement après chaque TODO traité.
+
+### Étape 3 — Bilan et archivage
+
+Afficher le bilan : TODOs passés en revue / modifiés / entièrement clos.
+
+Pour les TODOs entièrement clos, utiliser `AskUserQuestion` :
+- "Archiver les TODOs clos"
+- "Garder en place"
+
+Si archivage : déplacer vers `archive/journal/...` en préservant l'arborescence (via `shutil.move`).
+
+Ensuite, collecter les résumés de session (`resume-session`) et synthèses (`synthese-journal`) de plus de 7 jours. Si des fichiers sont éligibles, utiliser `AskUserQuestion` :
+- "Archiver les entrées journal éligibles"
+- "Garder en place"
+
+### Étape 4 — Régénérer l'index
+
+Lancer le script d'indexation (chemin à adapter selon le projet) :
+
+```bash
+python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+```
+
+Confirmer la régénération avec le nombre de sessions et TODOs indexés.
+
+---
+
 ## Option 1 — Lire l'index du journal
 
-1. Lire le fichier `docs/journal/index-journal.md`
+### Pré-étape — Régénérer l'index
+
+Avant de lire l'index, lancer :
+
+```bash
+python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+```
+
+(Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à la lecture.)
+
+1. Lire le fichier `index-journal.md` (à la racine du projet)
 2. Afficher les entrées de manière lisible
 3. Utiliser `AskUserQuestion` pour proposer l'ouverture d'une entrée :
    - Lister les entrées en **ordre anté-chronologique** (la plus récente en premier)
@@ -100,7 +187,7 @@ Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre 
 
 ### Étape 3 — Créer le fichier et mettre à jour l'index
 
-1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML :
+1. Créer `journal/YY/MM/DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML :
 
 ```yaml
 ---
@@ -118,10 +205,10 @@ date: YYYY-MM-DD
 # Résumé de session — YYYY-MM-DD HHhmm
 ```
 
-2. Ajouter une ligne dans `docs/journal/index-journal.md` :
+2. Ajouter une ligne dans `index-journal.md` (à la racine du projet) :
 
 ```
-| YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
+| YYMMDD-HHhmm | [[YY/MM/DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
 ```
 
 3. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
@@ -132,9 +219,19 @@ date: YYYY-MM-DD
 
 ## Option 3 — Synthèse pour l'Atelier Obsidian (mémoire utilisateur)
 
+### Pré-étape — Régénérer l'index
+
+Lancer avant de commencer :
+
+```bash
+python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+```
+
+(Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)
+
 ### Étape 1 — Lire et synthétiser
 
-Lire automatiquement tous les dossiers dans `docs/journal/YYYY-MM-DD/`. Produire en une seule réponse :
+Lire automatiquement tous les dossiers dans `journal/YY/MM/DD/`. Produire en une seule réponse :
 - La synthèse structurée (décisions et arbitrages, points pédagogiques, questions ouvertes, références utiles)
 - Les **dates couvertes** (ex: "2026-05-02 à 2026-05-03")
 - Les tags proposés (3 à 5, format listé avec guillemets : `["tag1", "tag2"]`)
@@ -147,7 +244,7 @@ Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre 
 ### Étape 3 — Créer et mettre à jour les index
 
 **3a — Créer la synthèse**
-1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal.md` avec en-tête YAML (tags, date, dates couvertes) et avertissement archive :
+1. Créer `journal/YY/MM/DD/YYMMDD-HHhmm-synthese-journal.md` avec en-tête YAML (tags, date, dates couvertes) et avertissement archive :
 
 ```yaml
 ---
@@ -165,10 +262,10 @@ dates_couvertes: YYYY-MM-DD à YYYY-MM-DD
 ```
 
 **3b — Mettre à jour l'index**
-2. Ajouter une ligne dans `docs/journal/index-journal.md` :
+2. Ajouter une ligne dans `index-journal.md` (à la racine du projet) :
 
 ```
-| YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal\|thème]] | 2026-05-02 à 2026-05-03 |
+| YYMMDD-HHhmm | [[YY/MM/DD/YYMMDD-HHhmm-synthese-journal\|thème]] | 2026-05-02 à 2026-05-03 |
 ```
 
 **3c — Mettre à jour latest-syntheses.md**
@@ -203,6 +300,16 @@ Les lire et ajouter en fin de fichier de synthèse une section résumant l'état
 ## Option 4 — Résumé de session + Synthèse pour l'Atelier Obsidian (les deux)
 
 Cette option exécute les Options 2 et 3 en séquence, avec un horodatage partagé.
+
+### Pré-étape — Régénérer l'index
+
+Lancer avant de commencer :
+
+```bash
+python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+```
+
+(Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)
 
 ### Étape 1 — Produire les deux contenus en une seule réponse
 
@@ -262,3 +369,29 @@ Le nom du vault correspond au nom du dossier projet (ex: `enquete-benevoles-repo
 ### Ce qu'il ne faut PAS modifier
 - Les autres blocs `### <projet>` — ne pas toucher aux projets non concernés par la session en cours.
 - La section "Ressources" — stable, ne pas modifier automatiquement.
+
+---
+
+## Clôture — Commit et push
+
+Cette étape s'exécute après toute option (0-4), en fin de `/synthese`.
+
+### Snapshot TODO.md
+
+Avant le commit : si `TODO.md` existe à la racine du projet, en créer une copie horodatée dans `todo/` :
+
+```
+todo/YYMMDD-HHhmm-TODO.md
+```
+
+(Horodatage Paris — même commande que pour les résumés de session.)
+Ne pas créer le snapshot si `TODO.md` est vide ou absent.
+
+### Commit et push
+
+Afficher la liste des fichiers qui seraient commités (résultat de `git status`). Proposer un message de commit.
+
+Utiliser `AskUserQuestion` avec trois options :
+- "Commiter et pousser"
+- "Commiter sans push"
+- "Passer"

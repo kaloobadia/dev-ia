@@ -1,15 +1,7 @@
 A l'attention de Claude, des autres IA et de leurs agents
 
-## Synchronisation de ce fichier
-Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
-
 ## Impératif
 Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis — ni dans les fichiers, ni dans le code, ni dans la conversation.
-
-## Formulation des questions
-- **Vrai choix entre options** → utiliser `AskUserQuestion` (options cliquables, aucune saisie pour l'utilisateur).
-- **Pas de vrai choix** (action sûre, réversible, dans le périmètre demandé) → exécuter directement et rapporter, sans demander.
-- **Proscrit :** la question disjonctive posée en texte libre du type « voulez-vous X, ou Y ? ». Elle n'a pas de résolution binaire (« oui » ne dit pas oui-à-quoi), force l'utilisateur à rédiger une désambiguïsation, et cumule l'absence de réponse en un mot ET l'absence d'options cliquables. Si un choix existe, il passe par `AskUserQuestion` ; sinon, agir.
 
 ## Shell
 - **Attention :** Ceci est un système Windows mais WSL, GitBash sont présents.
@@ -22,24 +14,13 @@ Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne 
 ## Caractères accentués
 - **Attention :** Conserver les caractères accentués dans le code. L'environnement est un système Windows en anglais, mais certaines variables (date, clavier, monnaie ...) sont en français, ce qui peut induire en erreur. 
 
-## Index des dossiers (`index.md`)
-- **Principe :** De nombreux dossiers contiennent un fichier `index.md` (généré par `scripts/index_folder.py`) listant noms, chemins, types, tailles et dates de leur contenu. Pour **localiser** un fichier ou un dossier, ou connaître la structure d'un répertoire, lire d'abord l'`index.md` présent plutôt que lancer un `Glob` exhaustif.
-- **Limite — contenu :** L'`index.md` n'indexe PAS le contenu des fichiers. Pour chercher une chaîne, une fonction ou un motif à l'intérieur des fichiers, un `Grep` sur les vrais fichiers reste nécessaire ; l'`index.md` peut seulement restreindre le périmètre.
-- **Fraîcheur :** Un `index.md` est un instantané daté (voir la ligne « Généré le … » en tête). S'il date de plus de **7 jours**, le considérer comme indicatif et proposer de le régénérer (`python scripts/index_folder.py "<dossier>"`) avant de s'y fier. S'il est absent, procéder par recherche normale (et éventuellement proposer de l'indexer).
-
 ## Dossier journal (transverse à tous les projets)
 - **Structure :** Chaque projet comporte un dossier `journal/YY/MM/DD/` créé au fil des jours de travail.
 - **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, TODO, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
 
 ## Fichiers du type "Note de journal"
 - **Conventions applicables:** Le fichier doit être horodaté (TZ=Paris) et mentionner le thème de la proposition. Il doit être enregistré dans le dossier ./journal/<YY>/<MM>/<DD>/. Le résultat doit être : ./journal/<YY>/<MM>/<DD>/<YYMMDD-HH[h]hh-<theme_en_quelques_mots>.md. Exemple : ./journal/26/05/10/260510-14h15-notice_convention_noms.md
-- **Structure obligatoire :** Le fichier doit commencer par le heading H1 (titre), suivi de l'horodatage en texte brut sur la deuxième ligne. Format :
-  ```
-  # <titre>
-
-  Note de journal — création le JJ/MM/AAAA à HHhMM, dernière mise à jour le JJ/MM/AAAA à HHhMM
-  ```
-  Cette structure satisfait MD041 (H1 en première ligne) et évite MD036 (horodatage en texte brut, pas directement sous un heading). La date de mise à jour est identique à la date de création lors de la première écriture.
+- **Première ligne obligatoire :** La première ligne du fichier doit être du texte brut (pas d'emphase, pas de heading), au format suivant : `Note de journal — création le JJ/MM/AAAA à HHhMM, dernière mise à jour le JJ/MM/AAAA à HHhMM`. Cette contrainte est imposée par la règle Markdown MD036 (emphase interdite en début de fichier ou directement sous un heading). La date de mise à jour est identique à la date de création lors de la première écriture.
 
 ## Point d'étape
 - **Définition :** pause avant ou après un point critique dans le développement du code.
@@ -62,17 +43,6 @@ Linters par langage (selon disponibilité dans le projet) :
 - **HTML** : HTMLHint, sinon validateur W3C via curl
 - **JavaScript / TypeScript** : eslint
 - **CSS** : stylelint
-
-## Choix des modèles pour les tâches automatisées
-
-Hiérarchie applicable lors de la planification d'un TODO et de la délégation à des sous-agents :
-
-- **Sonnet (low) = plancher** pour toute tâche automatisée : bugs ponctuels, edits ciblés, validation visuelle, cosmétique mécanique, config statusline, vérifications de fichiers.
-- **Sonnet (medium)** dès qu'il y a implémentation non triviale, rédaction nuancée, refactor modéré.
-- **Opus 4.7** réservé aux agents `Plan` (décisions structurantes) et au diagnostic d'échecs complexes.
-- **Haiku 4.5** exclu des tâches automatisées. Acceptable uniquement pour des recherches et analyses très ponctuelles et limitées en lecture seule (par exemple via la skill `Explore`).
-
-Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, regex, caractères accentués, conventions projet), ce qui est incompatible avec la Rule 12 "Fail loud" ci-dessous. Sonnet (low) conserve l'intelligence du modèle tout en réduisant le coût d'environ 60-70% par rapport à Opus.
 
 ## 12 règles de programmation 
 

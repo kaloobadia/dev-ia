@@ -1,6 +1,6 @@
 # Conventions TODO
 
-Applicable à tous les projets. Les fichiers TODO sont horodatés et journalisés dans `journal/YY/MM/DD/` — pas de `TODO.md` à la racine.
+Applicable à tous les projets. Chaque projet dispose d'un `TODO.md` à la racine, mis à jour en continu. Les snapshots horodatés sont créés par `/synthese` dans `todo/YY/MM/DD/`.
 
 ---
 
@@ -27,18 +27,24 @@ Les TODO a posteriori (créés après coup pour tracer ce qui a déjà été fai
 
 ## Sélection des TODO lors de `/synthese`
 
-Retenir les fichiers TODO **créés ou modifiés depuis la dernière synthèse**, identifiables via `git log` en filtrant les fichiers dont le nom contient `TODO` dans `journal/`.
+Chercher le TODO actif dans cet ordre :
+1. `TODO.md` à la racine du projet (s'il existe et contient au moins une checkbox ouverte)
+2. Sinon, le fichier le plus récent dans `todo/` dont le nom contient `TODO` et ayant au moins une checkbox ouverte (`[ ]`, `[?]`, `[!]`)
 
-Si aucune synthèse précédente n'existe, retenir tous les fichiers TODO ouverts du projet (au moins une checkbox `[ ]`, `[?]` ou `[!]` encore présente).
+Pour la section "État des TODO" de la synthèse : retenir les fichiers TODO **créés ou modifiés depuis la dernière synthèse**, identifiables via `git log`.
+
+Si aucune synthèse précédente n'existe, retenir tous les TODO ouverts du projet.
 
 ---
 
 ## Nommage
 
-Suivre la convention générale des notes de journal :
+**TODO actif** : `TODO.md` à la racine du projet. Mis à jour en continu au fil des sessions.
+
+**Snapshots horodatés** : créés automatiquement par `/synthese` en fin de session.
 
 ```
-journal/YY/MM/DD/YYMMDD-HHhmm-TODO-<theme>.md
+todo/YY/MM/DD/YYMMDD-HHhmm-TODO.md
 ```
 
-Exemple : `journal/26/05/17/260517-00h55-TODO-wrapper-tui.md`
+Exemple : `todo/26/05/23/260523-06h15-TODO.md`

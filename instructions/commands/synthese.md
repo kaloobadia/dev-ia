@@ -14,7 +14,6 @@ La version lisible de cette spec (pour tous les agents) est dans :
 **Synchronisation** : toute modification de ce fichier doit être répercutée dans :
 - `IA/workflow/instructions/synthese.md` (référence lisible)
 - `IA/config/claude/commands/synthese.md` (copie versionnée de la commande)
-- `.agents/commands/synthese.md` (copie projet-racine)
 
 ---
 
@@ -31,22 +30,26 @@ La version lisible de cette spec (pour tous les agents) est dans :
 
 ```
 <projet>/
-├── CLAUDE.md                        ← à la racine du projet
-├── index-journal.md                 ← index des synthèses (racine projet)
-├── TODO.md                          ← TODO courant (mis à jour en continu)
 ├── .claude/
 │   └── settings.local.json
+├── CLAUDE.md                        ← à la racine du projet
 ├── docs/
-│   └── reference/
-└── journal/YY/MM/DD/                ← notes brutes, snapshots TODO, resume-session ET synthèses
-    └── YYMMDD-HHhmm-synthese-journal.md
+│   ├── journal/
+│   │   ├── index-journal.md         ← index des synthèses
+│   │   └── YYYY-MM-DD/              ← dossiers actifs (notes brutes + synthèses)
+│   │       └── YYMMDD-HHhmm-synthese-journal.md
+│   ├── reference/
+│   └── archives/
+│       └── journal/YYYY-MM-DD/      ← dossiers archivés après synthèse
+├── TODO.md                          ← TODO courant (mis à jour en continu)
+└── journal/YY/MM/DD/                ← snapshots horodatés du TODO + notes de session
 ```
 
 ---
 
 ## Pré-amble — Checkpoint de session
 
-Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options. **Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+Ces trois étapes s'exécutent systématiquement au lancement de `/synthese`, avant le menu d'options.
 
 ### Étape A — Checkpoint git
 
@@ -187,7 +190,7 @@ Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre 
 
 ### Étape 3 — Créer le fichier et mettre à jour l'index
 
-1. Créer `journal/YY/MM/DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML :
+1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-resume-session.md` avec en-tête YAML :
 
 ```yaml
 ---
@@ -208,7 +211,7 @@ date: YYYY-MM-DD
 2. Ajouter une ligne dans `index-journal.md` (à la racine du projet) :
 
 ```
-| YYMMDD-HHhmm | [[YY/MM/DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
+| YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-resume-session\|thème]] | dates | ["tag1", "tag2"] | Prochaines étapes |
 ```
 
 3. Mettre à jour `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md` — remplacer la ligne du projet courant avec le nouveau fichier et la date.
@@ -231,7 +234,7 @@ python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --i
 
 ### Étape 1 — Lire et synthétiser
 
-Lire automatiquement tous les dossiers dans `journal/YY/MM/DD/`. Produire en une seule réponse :
+Lire automatiquement tous les dossiers dans `docs/journal/YYYY-MM-DD/`. Produire en une seule réponse :
 - La synthèse structurée (décisions et arbitrages, points pédagogiques, questions ouvertes, références utiles)
 - Les **dates couvertes** (ex: "2026-05-02 à 2026-05-03")
 - Les tags proposés (3 à 5, format listé avec guillemets : `["tag1", "tag2"]`)
@@ -244,7 +247,7 @@ Utiliser `AskUserQuestion` avec deux options : "Tout me convient" et "Reprendre 
 ### Étape 3 — Créer et mettre à jour les index
 
 **3a — Créer la synthèse**
-1. Créer `journal/YY/MM/DD/YYMMDD-HHhmm-synthese-journal.md` avec en-tête YAML (tags, date, dates couvertes) et avertissement archive :
+1. Créer `docs/journal/YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal.md` avec en-tête YAML (tags, date, dates couvertes) et avertissement archive :
 
 ```yaml
 ---
@@ -265,7 +268,7 @@ dates_couvertes: YYYY-MM-DD à YYYY-MM-DD
 2. Ajouter une ligne dans `index-journal.md` (à la racine du projet) :
 
 ```
-| YYMMDD-HHhmm | [[YY/MM/DD/YYMMDD-HHhmm-synthese-journal\|thème]] | 2026-05-02 à 2026-05-03 |
+| YYMMDD-HHhmm | [[YYYY-MM-DD/YYMMDD-HHhmm-synthese-journal\|thème]] | 2026-05-02 à 2026-05-03 |
 ```
 
 **3c — Mettre à jour latest-syntheses.md**

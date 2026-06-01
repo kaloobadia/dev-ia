@@ -1,4 +1,7 @@
 {
+  "env": {
+    "BASH_ENV": "C:/Users/Guillaume/.claude/bash-safe-rm.sh"
+  },
   "permissions": {
     "allow": [
       "Bash(powershell -Command \"python 'c:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\\\\enquete-benevoles-report\\\\_patch_legend2.py'\")",
@@ -31,23 +34,69 @@
       "Bash(sort -k11)",
       "Bash(mkdir -p \"/c/Users/Guillaume/Documents/dev/enquete-benevoles-report/assets/png\")",
       "Bash(cp /c/Users/Guillaume/Documents/dev/enquete-benevoles/outputs/png/*.png \"/c/Users/Guillaume/Documents/dev/enquete-benevoles-report/assets/png/\")",
-      "Bash(cp \"/c/Users/Guillaume/Documents/dev/enquete-benevoles/outputs/2604291536-axe12-dendrogram.png\" \"/c/Users/Guillaume/Documents/dev/enquete-benevoles-report/assets/png/\")"
+      "Bash(cp \"/c/Users/Guillaume/Documents/dev/enquete-benevoles/outputs/2604291536-axe12-dendrogram.png\" \"/c/Users/Guillaume/Documents/dev/enquete-benevoles-report/assets/png/\")",
+      "Bash(git -C \"c:/Users/Guillaume/Documents/dev/robertet\" status)",
+      "Bash(grep -r \"TODO\" \"C:/Users/Guillaume/.claude/CLAUDE.md\" | head -20)",
+      "Read(//c/Users/Guillaume/.claude/**)",
+      "Bash(git -C \"c:/Users/Guillaume/Documents/dev/robertet\" mv \"260522-19h40-TODO.md\" \"TODO.md\")",
+      "Bash(git mv *)",
+      "Bash(python3 -)",
+      "Bash(python -)",
+      "Bash(mkdir -p \"C:/Users/Guillaume/Documents/dev/IA/instructions\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\" -Recurse -Filter \"*convention*\")",
+      "Bash(Select-Object FullName, Length)",
+      "Bash(ConvertTo-Json)",
+      "Bash(wc -l c:\\\\\\\\Users\\\\\\\\Guillaume\\\\\\\\Documents\\\\\\\\dev\\\\\\\\robertet\\\\\\\\collab\\\\\\\\26\\\\\\\\05\\\\\\\\22\\\\\\\\productions\\\\\\\\initiales\\\\\\\\260522-02h49-knowledge-graph-vba.md)",
+      "WebFetch(domain:gephi.org)",
+      "Bash(/c/Python314/python -c ' *)",
+      "Bash(python scripts/260525-16h26-convert_md_to_gexf_v2.py)",
+      "Bash(powershell.exe -Command \"[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId\\([DateTime]::Now, 'Romance Standard Time'\\).ToString\\('HH\\\\hmm'\\)\")",
+      "Bash(python scripts/extract_overlay.py)",
+      "Bash(python scripts/merge_overlay.py --map productions/26/05/25/260525-test-map_pure.md --overlay productions/26/05/25/260525-test-overlay-reversed.md --nodes-to-review productions/26/05/25/260525-21h14-nodes-to-review.md --output productions/26/05/25/260525-test-map_finale_reversed.md --log productions/26/05/25/260525-test-merge_reversed.log)",
+      "Bash(python scripts/merge_overlay.py --map productions/inexistant.md --overlay productions/26/05/25/260525-21h14-overlay.md --output productions/26/05/25/260525-test-err.md --log productions/26/05/25/260525-test-err.log)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(python scripts/merge_overlay.py --map productions/26/05/25/260525-test-map_pure.md --overlay productions/26/05/25/260525-21h14-overlay.md --output productions/26/05/25/260525-test-map_sans_ntr.md --log productions/26/05/25/260525-test-merge_sans_ntr.log)",
+      "Bash(DATA_DIR=\"data\" HTML_DIR=\"reports/html\" BUNDLE_DIR=\".\" PNG_DIR=\"outputs/png\" LLM_MODE=\"absent\" API_DISPONIBLE=\"0\" .venv/Scripts/python.exe scripts/17-axe00-data-json.py)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(python scripts/generate_map.py --overlay-ref productions/26/05/25/260525-21h14-overlay.md)",
+      "Bash(python scripts/generate_map.py --header-date \"fige\" --output /tmp/map1.md)",
+      "Bash(python scripts/generate_map.py --header-date \"fige\" --output /tmp/map2.md)",
+      "Read(//tmp/**)",
+      "Bash(python scripts/260525-16h26-convert_md_to_gexf_v2.py --input productions/map_pure.md --output /tmp/test.gexf)",
+      "Bash(python scripts/merge_overlay.py --map productions/map_pure.md --overlay productions/26/05/25/260525-21h14-overlay.md --output /tmp/map_finale.md --log /tmp/merge.log)",
+      "Bash(rm productions/26/05/25/260525-22h12-map_pure.md)",
+      "Bash(python scripts/generate_map.py --output \"productions/26/05/25/260525-22h19-map_pure.md\" --overlay-ref productions/26/05/25/260525-21h14-overlay.md)",
+      "Bash(python scripts/260525-16h26-convert_md_to_gexf_v2.py --input /tmp/map_finale.md --output ./tmp_final.gexf)",
+      "Bash(rm tmp_final.gexf)",
+      "Bash(git -C \"c:/Users/Guillaume/Documents/dev/robertet\" log --oneline -5)",
+      "Bash(git -C \"c:/Users/Guillaume/Documents/dev/robertet\" diff HEAD -- journal/26/05/25/)",
+      "Bash(git -C \"c:/Users/Guillaume/Documents/dev/robertet\" status --short)",
+      "Bash(grep -vE \"\\(archive\\\\\\\\\\\\\\\\|journal\\\\\\\\\\\\\\\\|todo\\\\\\\\\\\\\\\\\\)\")"
     ],
     "additionalDirectories": [
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier\\ressources",
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier",
-      "c:\\Users\\Guillaume\\Documents\\dev\\enquete-benevoles-report"
+      "c:\\Users\\Guillaume\\Documents\\dev\\enquete-benevoles-report",
+      "C:\\Users\\Guillaume\\Documents\\dev\\IA\\workflow\\instructions",
+      "C:\\Users\\Guillaume\\.claude",
+      "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
-  "enabledPlugins": {
-    "code-review@claude-plugins-official": true
-  },
-  "effortLevel": "medium",
-  "advisorModel": "opus",
-  "autoUpdatesChannel": "latest",
-  "theme": "dark",
+  "enableWorkflows": true,
   "statusLine": {
     "type": "command",
     "command": "bash /c/Users/Guillaume/.claude/statusline-command.sh"
-  }
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
+  },
+  "effortLevel": "medium",
+  "advisorModel": "opus",
+  "promptSuggestionEnabled": false,
+  "autoUpdatesChannel": "latest",
+  "theme": "dark",
+  "editorMode": "normal",
+  "autoCompactEnabled": true,
+  "agentPushNotifEnabled": true
 }
