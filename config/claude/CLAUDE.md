@@ -31,10 +31,13 @@ Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne 
 
 Tout nouveau projet doit être initialisé avec les éléments suivants à la racine :
 
+- `readme.md` — description du projet (contexte, objectif, organisation) et description du contenu du dossier
 - `index.md` — table des matières du projet (voir section "Index des dossiers")
 - `TODO.md` — liste des tâches courantes
 - `journal/` — notes horodatées (voir section "Dossier journal")
 - `todo/` — archive journalisée des TODO (voir section "Dossier todo")
+- `ressources/` — documents reçus, sujets, consignes, références
+- `travaux/` — productions rendues ou en cours
 
 ## Dossier journal (transverse à tous les projets)
 - **Structure :** Chaque projet comporte un dossier `journal/YY/MM/DD/` créé au fil des jours de travail.
