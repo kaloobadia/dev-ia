@@ -6,6 +6,9 @@ Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à ch
 ## Impératif
 Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis — ni dans les fichiers, ni dans le code, ni dans la conversation.
 
+## Compte-rendu des opérations sur fichiers
+Avant de restituer quoi que ce soit dans la conversation suite à une opération sur fichier (Read, Write, Edit, etc.), ne poster que : chemin du fichier, numéro de ligne si pertinent, commentaire bref. Ne jamais recopier le contenu du fichier dans la conversation.
+
 ## Formulation des questions
 - **Vrai choix entre options** → utiliser `AskUserQuestion` (options cliquables, aucune saisie pour l'utilisateur).
 - **Pas de vrai choix** (action sûre, réversible, dans le périmètre demandé) → exécuter directement et rapporter, sans demander.
