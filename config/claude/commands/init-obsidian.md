@@ -1,4 +1,4 @@
-# Commande /init-dossier
+# Commande /init-obsidian
 
 ## Rôle
 
@@ -195,5 +195,5 @@ Si Oui :
 ## Synchronisation de ce fichier
 
 Toute modification doit être répercutée dans :
-- `~/.claude/commands/init-dossier.md` (primaire)
-- `C:\Users\Guillaume\Documents\dev\IA\config\claude\commands\init-dossier.md` (copie versionnée)
+- `~/.claude/commands/init-obsidian.md` (primaire)
+- `C:\Users\Guillaume\Documents\dev\IA\config\claude\commands\init-obsidian.md` (copie versionnée)
