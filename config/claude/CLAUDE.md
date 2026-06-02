@@ -27,9 +27,22 @@ Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne 
 - **Limite — contenu :** L'`index.md` n'indexe PAS le contenu des fichiers. Pour chercher une chaîne, une fonction ou un motif à l'intérieur des fichiers, un `Grep` sur les vrais fichiers reste nécessaire ; l'`index.md` peut seulement restreindre le périmètre.
 - **Fraîcheur :** Un `index.md` est un instantané daté (voir la ligne « Généré le … » en tête). S'il date de plus de **7 jours**, le considérer comme indicatif et proposer de le régénérer (`python scripts/index_folder.py "<dossier>"`) avant de s'y fier. S'il est absent, procéder par recherche normale (et éventuellement proposer de l'indexer).
 
+## Structure standard d'un projet
+
+Tout nouveau projet doit être initialisé avec les éléments suivants à la racine :
+
+- `index.md` — table des matières du projet (voir section "Index des dossiers")
+- `TODO.md` — liste des tâches courantes
+- `journal/` — notes horodatées (voir section "Dossier journal")
+- `todo/` — archive journalisée des TODO (voir section "Dossier todo")
+
 ## Dossier journal (transverse à tous les projets)
 - **Structure :** Chaque projet comporte un dossier `journal/YY/MM/DD/` créé au fil des jours de travail.
-- **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, TODO, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
+- **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
+
+## Dossier todo (transverse à tous les projets)
+- **Structure :** Chaque projet comporte un dossier `todo/YY/MM/DD/` créé au fil des jours de travail.
+- **Contenu :** Ce dossier du jour accueille les fichiers TODO archivés, horodatés selon les mêmes conventions que les notes de journal.
 
 ## Fichiers du type "Note de journal"
 - **Conventions applicables:** Le fichier doit être horodaté (TZ=Paris) et mentionner le thème de la proposition. Il doit être enregistré dans le dossier ./journal/<YY>/<MM>/<DD>/. Le résultat doit être : ./journal/<YY>/<MM>/<DD>/<YYMMDD-HH[h]hh-<theme_en_quelques_mots>.md. Exemple : ./journal/26/05/10/260510-14h15-notice_convention_noms.md
