@@ -46,7 +46,15 @@ La version lisible de cette spec (pour tous les agents) est dans :
 
 ## Pré-amble — Checkpoint de session
 
-Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options. **Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+### Étape préalable — Proposition de point d'étape
+
+Avant toute chose, utiliser `AskUserQuestion` : "Voulez-vous d'abord faire un point d'étape ?" avec options :
+- "Oui, lancer /etape" — invoquer la skill `/etape` et attendre qu'elle soit terminée avant de poursuivre
+- "Non, continuer la synthèse" — passer directement aux étapes A, B, C ci-dessous
+
+**Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+
+Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options.
 
 ### Étape A — Checkpoint git
 
