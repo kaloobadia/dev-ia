@@ -138,7 +138,7 @@ Ensuite, collecter les résumés de session (`resume-session`) et synthèses (`s
 Lancer le script d'indexation (chemin à adapter selon le projet) :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 Confirmer la régénération avec le nombre de sessions et TODOs indexés.
@@ -152,7 +152,7 @@ Confirmer la régénération avec le nombre de sessions et TODOs indexés.
 Avant de lire l'index, lancer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à la lecture.)
@@ -232,7 +232,7 @@ date: YYYY-MM-DD
 Lancer avant de commencer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)
@@ -314,7 +314,7 @@ Cette option exécute les Options 2 et 3 en séquence, avec un horodatage partag
 Lancer avant de commencer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)
