@@ -82,6 +82,7 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -111,6 +112,5 @@
   "theme": "dark",
   "editorMode": "normal",
   "autoCompactEnabled": true,
-  "agentPushNotifEnabled": true,
-  "model": "opus"
+  "agentPushNotifEnabled": true
 }
