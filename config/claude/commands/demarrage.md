@@ -13,6 +13,19 @@ Vouvoiement strict. Style sobre. Aucun emoji.
 
 ## Comportement
 
+### Étape 0 — Instantané initial (état d'entrée)
+
+Au tout début, capturer un instantané de l'état (contexte %, tokens, coût) en
+lisant le JSON de statut de la statusline et en enregistrant une baseline :
+
+```bash
+cat /tmp/claude-statusline-debug.json | python ~/.claude/demarrage-snapshot.py start
+```
+
+Afficher la ligne « Etat initial » renvoyée. Cet instantané servira de référence
+pour mesurer l'écart en fin de skill. Source : `/tmp/claude-statusline-debug.json`,
+écrit par la statusline ; lecture sur stdin pour que bash résolve `/tmp`.
+
 ### Étape 1 — Revue des instructions
 
 Relire les instructions effectivement chargées pour la session : le `CLAUDE.md`
@@ -44,6 +57,23 @@ Via `AskUserQuestion`, proposer deux voies :
    documents (ce qu'il en attend, sous quel angle les examiner).
 3. Lire les fichiers indiqués et les examiner à la lumière des consignes
    obtenues. Poursuivre le travail sur cette base.
+
+### Étape finale — Instantané final et écart
+
+Juste avant de rendre la main (que l'utilisateur ait choisi « reprendre » ou
+qu'on ait traité des fichiers de contexte), capturer l'instantané final et
+afficher l'écart depuis la baseline :
+
+```bash
+cat /tmp/claude-statusline-debug.json | python ~/.claude/demarrage-snapshot.py end
+```
+
+Afficher les lignes « Etat final » et « Ecart » renvoyées. L'écart donne une
+mesure approximative du coût du skill (contexte, tokens, USD).
+
+Limite à garder en tête : le JSON de statut n'est rafraîchi qu'aux rendus de la
+statusline ; l'instantané final peut donc ne pas intégrer les tout derniers tokens
+du tour. L'écart est indicatif, pas exact.
 
 ---
 
