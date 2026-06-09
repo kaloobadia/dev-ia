@@ -82,6 +82,7 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -107,7 +108,7 @@
     "code-review@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true
   },
-  "effortLevel": "medium",
+  "effortLevel": "low",
   "advisorModel": "opus",
   "promptSuggestionEnabled": false,
   "autoUpdatesChannel": "latest",
