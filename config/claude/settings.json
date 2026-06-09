@@ -82,7 +82,7 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
-  "model": "opus",
+  "model": "haiku",
   "hooks": {
     "Stop": [
       {
@@ -112,9 +112,9 @@
   "advisorModel": "opus",
   "promptSuggestionEnabled": false,
   "autoUpdatesChannel": "latest",
+  "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "editorMode": "normal",
   "autoCompactEnabled": true,
-  "agentPushNotifEnabled": true,
-  "skipWorkflowUsageWarning": true
+  "agentPushNotifEnabled": true
 }
