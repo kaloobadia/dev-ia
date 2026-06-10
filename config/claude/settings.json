@@ -82,7 +82,7 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\IA"
     ]
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
