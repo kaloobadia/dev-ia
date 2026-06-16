@@ -46,7 +46,15 @@ La version lisible de cette spec (pour tous les agents) est dans :
 
 ## Pré-amble — Checkpoint de session
 
-Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options. **Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+### Étape préalable — Proposition de point d'étape
+
+Avant toute chose, utiliser `AskUserQuestion` : "Voulez-vous d'abord faire un point d'étape ?" avec options :
+- "Oui, lancer /etape" — invoquer la skill `/etape` et attendre qu'elle soit terminée avant de poursuivre
+- "Non, continuer la synthèse" — passer directement aux étapes A, B, C ci-dessous
+
+**Si vous venez directement de `/etape`** (étapes 1-3 déjà réalisées), passer directement au menu d'options sans répéter les étapes A, B et C.
+
+Ces trois étapes s'exécutent au lancement de `/synthese`, avant le menu d'options.
 
 ### Étape A — Checkpoint git
 
@@ -130,7 +138,7 @@ Ensuite, collecter les résumés de session (`resume-session`) et synthèses (`s
 Lancer le script d'indexation (chemin à adapter selon le projet) :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 Confirmer la régénération avec le nombre de sessions et TODOs indexés.
@@ -144,7 +152,7 @@ Confirmer la régénération avec le nombre de sessions et TODOs indexés.
 Avant de lire l'index, lancer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à la lecture.)
@@ -224,7 +232,7 @@ date: YYYY-MM-DD
 Lancer avant de commencer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)
@@ -306,7 +314,7 @@ Cette option exécute les Options 2 et 3 en séquence, avec un horodatage partag
 Lancer avant de commencer :
 
 ```bash
-python collab/26/05/18/chantier-indexation/260518-03h31-script-indexation.py --index-only
+index-journal --index-only
 ```
 
 (Chemin à adapter selon le projet. Si le script n'existe pas, passer directement à l'étape 1.)

@@ -1,0 +1,96 @@
+❯ revois déjà tes instructions pendant que je prépare la suite
+
+● Instructions revues. Points que je retiens pour cette session :
+
+  Communication
+  - Français, vouvoiement, aucun emoji (fichiers, code, conversation).
+  - Style sobre, coller à vos mots, pas de jargon ni fioritures.
+  - Vrai choix → AskUserQuestion (options cliquables). Action sûre et réversible → j'exécute et je rapporte. Jamais de
+  question disjonctive en texte libre.
+
+  Opérations sur fichiers
+  - Après Read/Write/Edit : seulement chemin + ligne si utile + commentaire bref. Jamais de recopie du contenu dans la
+  conversation.
+
+  Shell
+  - Système Windows ; privilégier l'outil Bash (Git Bash/WSL), PowerShell seulement si nécessaire (et ; au lieu de    
+  &&).
+  - Heure de Paris via la commande dédiée (Romance Standard Time).
+  - Conserver les caractères accentués.
+
+  Structure projet
+  - Notes horodatées dans journal/YY/MM/DD/, TODO archivés dans todo/YY/MM/DD/.
+  - Type "note de journal" : H1 + horodatage en texte brut en 2e ligne.
+  - Consulter index.md avant un Glob exhaustif (et vérifier sa fraîcheur, >7 jours = indicatif).
+
+  Méthode
+  - Mode Plan : la validation n'autorise jamais l'implémentation ; proposer d'archiver le plan.
+  - Point d'étape via /etape.
+  - Proposer le linter après écriture de code, en session annexe.
+  - Les 12 règles (réfléchir avant de coder, simplicité, changements chirurgicaux, fail loud, etc.).
+
+  Mémoire projet (UPVM — Seconde chance)
+  - Action proactive : croiser les nouveaux fichiers avec liste-eval2.txt et proposer l'action métier utile.
+  - Pas de dump inline, langue française sans anglicismes, style sobre.
+
+❯ documente cette réponse mais dis-moi d'abord comment tu vas procéder
+
+● Voici comment je compte procéder :
+
+  1. Type de fichier : note de journal, donc conventions applicables.
+  2. Horodatage : je récupère l'heure de Paris (Romance Standard Time) pour le nom et l'en-tête.
+  3. Emplacement : journal/26/06/04/ (dossier du jour, déjà existant d'après vos deux références).
+  4. Nom : 260604-HHhMM-revue-instructions.md.
+  5. Structure : H1 (titre) en 1re ligne, puis l'horodatage en texte brut en 2e ligne (Note de journal — création le  
+  04/06/2026 à HHhMM, dernière mise à jour le 04/06/2026 à HHhMM), conforme MD041/MD036.
+  6. Contenu : la synthèse des instructions que je viens de poster, organisée par rubriques (Communication, Fichiers, 
+  Shell, Structure, Méthode, Mémoire projet).
+  7. Compte-rendu : après écriture, je ne poste que le chemin + un commentaire bref, sans recopier le contenu.   
+
+● cf. journal\26\06\04\260604-11h59-revue-instructions.md
+```mardown
+    # Revue des instructions — session UPVM Seconde chance
+
+    Note de journal — création le 04/06/2026 à 11h59, dernière mise à jour le 04/06/2026 à 11h59
+
+    Synthèse des instructions retenues en début de session, organisée par rubriques.
+
+    ## Communication
+
+    - Français, vouvoiement, aucun emoji (fichiers, code, conversation).
+    - Style sobre, coller aux mots de l'utilisateur, pas de jargon ni fioritures.
+    - Vrai choix entre options → `AskUserQuestion` (options cliquables, aucune saisie). Action sûre et réversible dans le périmètre → exécuter et rapporter, sans demander. Jamais de question disjonctive en texte libre.
+
+    ## Opérations sur fichiers
+
+    - Après Read/Write/Edit : poster uniquement le chemin, le numéro de ligne si pertinent, et un commentaire bref. Jamais de recopie du contenu dans la conversation.
+
+    ## Shell
+
+    - Système Windows ; privilégier l'outil `Bash` (Git Bash/WSL), réserver `PowerShell` aux cas strictement nécessaires (et utiliser `;` au lieu de `&&`).
+    - Heure de Paris via la commande dédiée (`Romance Standard Time`).
+    - Conserver les caractères accentués (environnement Windows en anglais, variables partiellement en français).
+
+    ## Structure projet
+
+    - Notes horodatées dans `journal/YY/MM/DD/`, TODO archivés dans `todo/YY/MM/DD/`.
+    - Type "note de journal" : H1 (titre) en 1re ligne, horodatage en texte brut en 2e ligne (conforme MD041/MD036).
+    - Consulter l'`index.md` d'un dossier avant un Glob exhaustif ; vérifier sa fraîcheur (>7 jours = indicatif, proposer de régénérer). L'`index.md` n'indexe pas le contenu : un Grep reste nécessaire pour chercher dans les fichiers.
+    - Structure standard d'un projet : `readme.md`, `index.md`, `TODO.md`, `journal/`, `todo/`, `ressources/`, `travaux/`.
+
+    ## Méthode
+
+    - Mode Plan : la validation approuve uniquement la conception, jamais l'implémentation ; proposer systématiquement d'archiver le plan dans un fichier horodaté.
+    - Point d'étape via la skill `/etape`.
+    - Proposer le linter approprié après écriture de code, en session annexe (style `/btw`).
+    - Choix des modèles : Sonnet (low) comme plancher pour les tâches automatisées, Opus réservé aux décisions structurantes et diagnostics complexes, Haiku exclu des tâches automatisées.
+    - Les 12 règles de programmation : réfléchir avant de coder, simplicité, changements chirurgicaux, exécution pilotée par l'objectif, modèle pour le jugement seulement, budgets de tokens, surfacer les conflits, lire avant d'écrire, tests qui vérifient l'intention, checkpoint après chaque étape, respecter les conventions du code, fail loud.
+
+    ## Mémoire projet (UPVM — Seconde chance)
+
+    - Action proactive : croiser les nouveaux fichiers avec `liste-eval2.txt` et proposer l'action métier utile.
+    - Pas de dump inline après un Write/Edit.
+    - Langue française sans anglicismes (ex. "date limite" pas "deadline").
+    - Style sobre.
+```
+

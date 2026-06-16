@@ -1,8 +1,10 @@
-Note de journal — création le 23/05/2026 à 14h40, dernière mise à jour le 23/05/2026 à 16h03
+Note de journal — création le 23/05/2026 à 14h40, dernière mise à jour le 04/06/2026 à 12h21
 
 # IA/instructions — Cartographie des instructions pour agents IA
 
-Inventaire des fichiers d'instructions destinés aux agents IA, dispersés dans l'arborescence `/dev` et `~/.claude`. Aucun fichier n'est déplacé ici — ce dossier est une carte, pas un entrepôt.
+Inventaire des fichiers d'instructions destinés aux agents IA, dispersés dans l'arborescence `/dev` et `~/.claude`. **Règle générale : ce dossier est une carte, pas un entrepôt** — aucun fichier d'instructions n'y est déplacé, on note seulement où il vit. **Exception assumée et tracée** : l'entrepôt d'idées de skills (section 2), qui stocke réellement du contenu ; la carte pointe alors vers ce territoire nommé plutôt que d'en interdire l'existence.
+
+> **Décision d'architecture à réévaluer** : le principe même d'une « cartographie des instructions » (un dossier-carte distinct des fichiers d'instructions qu'il recense) est un choix d'architecture, pas une évidence. À reconsidérer périodiquement — notamment au regard de sa fraîcheur, du coût d'entretien des renvois, et de l'apparition d'exceptions comme l'entrepôt (section 2).
 
 ---
 
@@ -15,7 +17,17 @@ Inventaire des fichiers d'instructions destinés aux agents IA, dispersés dans 
 
 ---
 
-## 2. Commandes exécutables (portée : tous projets Claude Code)
+## 2. Entrepôt d'idées de skills (portée : tous agents)
+
+**Dérogation assumée à la règle "carte, pas entrepôt"** (cf. préambule ci-dessus) : ce dossier stocke réellement du contenu. La carte gagne en cohérence en pointant vers ce territoire nommé plutôt qu'en interdisant son existence.
+
+| Dossier | Contenu | Statut |
+|---------|---------|--------|
+| `/dev/IA/idees-skills/` | Idées de skills issues de comportements répétitifs, fastidieux et automatisables (voir `readme.md` du dossier) | **Entrepôt** (contenu, pas pointeurs) |
+
+---
+
+## 3. Commandes exécutables (portée : tous projets Claude Code)
 
 **Les commandes sont consolidées dans `/dev/IA/instructions/commands/`** pour consultation centralisée.
 
@@ -29,7 +41,7 @@ Inventaire des fichiers d'instructions destinés aux agents IA, dispersés dans 
 
 ---
 
-## 3. Agents exécutables (portée : tous projets Claude Code)
+## 4. Agents exécutables (portée : tous projets Claude Code)
 
 | Fichier | Contenu | Statut |
 |---------|---------|--------|
@@ -38,7 +50,7 @@ Inventaire des fichiers d'instructions destinés aux agents IA, dispersés dans 
 
 ---
 
-## 4. Conventions documentaires (portée : tous projets)
+## 5. Conventions documentaires (portée : tous projets)
 
 Fichiers dans `/dev/IA/workflow/instructions/` :
 
@@ -50,7 +62,7 @@ Fichiers dans `/dev/IA/workflow/instructions/` :
 
 ---
 
-## 5. Protocoles multi-agents (portée : projets avec orchestration multi-agents)
+## 6. Protocoles multi-agents (portée : projets avec orchestration multi-agents)
 
 **Consolidés dans `/dev/IA/instructions/multi-agents/`** pour consultation centralisée.
 
@@ -62,7 +74,7 @@ Fichiers dans `/dev/IA/workflow/instructions/` :
 
 ---
 
-## 6. Instructions par projet
+## 7. Instructions par projet
 
 Chaque projet dispose de ses propres fichiers d'instructions à sa racine et/ou dans `.agents/` :
 
@@ -74,11 +86,11 @@ Chaque projet dispose de ses propres fichiers d'instructions à sa racine et/ou 
 | `<projet>/MISTRAL.md` | Contexte et contraintes pour Mistral | Projet |
 | `<projet>/.agents/CLAUDE.md` | Surcharge ou référence externe | Projet |
 
-Projets concernés : `homelab-tracker`, `enquete-benevoles`, `enquete-benevoles-exe`, `enquete-benevoles-report`, `enquete-benevole-integration`, `atelier`, `robertet`.
+Projets concernés : `homelab-tracker`, `enquete-benevoles`, `enquete-benevoles-exe`, `enquete-benevoles-report`, `enquete-benevole-integration`, `atelier`, `robertet`, `UPVM-2nde-session`.
 
 ---
 
-## 7. Conventions de nommage artefacts multi-agents
+## 8. Conventions de nommage artefacts multi-agents
 
 Fichiers dans `/dev/enquete-benevoles-exe/collab/26/05/15/convention-agents/définitions/` :
 
@@ -89,7 +101,7 @@ Fichiers dans `/dev/enquete-benevoles-exe/collab/26/05/15/convention-agents/déf
 
 ---
 
-## 8. Doublons et points de friction
+## 9. Doublons et points de friction
 
 **Résolus par consolidation (260523) :**
 - ✓ Les commandes sont désormais centralisées dans `/dev/IA/instructions/commands/` (source unique de consultation)
@@ -102,10 +114,11 @@ Fichiers dans `/dev/enquete-benevoles-exe/collab/26/05/15/convention-agents/déf
 
 **Restants :**
 - `homelab-tracker/docs/reference/AGENTS.md` contient des informations sensibles qui ne devraient pas figurer dans un fichier d'instructions standard
+- Entrepôt `idees-skills/` : les fichiers y sont des copies (originaux dans le journal UPVM) — pas de mécanisme de synchronisation entre copie et original
 
 ---
 
-## 9. Ce qui manque
+## 10. Ce qui manque
 
 - Pas d'instructions globales pour Gemini ou Mistral au niveau `~/.` (équivalent de `~/.claude/CLAUDE.md`)
 - Pas de mécanisme de synchronisation des miroirs
