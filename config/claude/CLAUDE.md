@@ -45,6 +45,12 @@ Tout nouveau projet doit être initialisé avec les éléments suivants à la ra
 - `ressources/` — documents reçus, sujets, consignes, références
 - `travaux/` — productions rendues ou en cours
 
+## Convention d'archive
+- **Un seul motif :** un dossier `archives/` (pluriel, nu) à la racine de chaque vault. Pas de variantes (`archive/` singulier, `archives-<projet>/`, ni sous-dossiers à préfixe redondant).
+- **Sous-dossiers nus par section :** `archives/journal/`, `archives/ressources/`, `archives/docs/`, etc. — sans répéter le nom du projet.
+- **Archive froide du méta-projet :** `~/Documents/archives/` (projets clôturés ou dormants).
+- **Hors index quotidien :** `run_daily_index.py` passe `--exclude archives`, qui exclut tout dossier nommé `archives` à n'importe quel niveau ; le contenu archivé n'alourdit donc pas `index-auto.md`.
+
 ## Dossier journal (transverse à tous les projets)
 - **Structure :** Chaque projet comporte un dossier `journal/YY/MM/DD/` créé au fil des jours de travail.
 - **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
