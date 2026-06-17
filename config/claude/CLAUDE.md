@@ -25,17 +25,20 @@ Avant de restituer quoi que ce soit dans la conversation suite à une opération
 ## Caractères accentués
 - **Attention :** Conserver les caractères accentués dans le code. L'environnement est un système Windows en anglais, mais certaines variables (date, clavier, monnaie ...) sont en français, ce qui peut induire en erreur. 
 
-## Index des dossiers (`index.md`)
-- **Principe :** De nombreux dossiers contiennent un fichier `index.md` (généré par `scripts/index_folder.py`) listant noms, chemins, types, tailles et dates de leur contenu. Pour **localiser** un fichier ou un dossier, ou connaître la structure d'un répertoire, lire d'abord l'`index.md` présent plutôt que lancer un `Glob` exhaustif.
-- **Limite — contenu :** L'`index.md` n'indexe PAS le contenu des fichiers. Pour chercher une chaîne, une fonction ou un motif à l'intérieur des fichiers, un `Grep` sur les vrais fichiers reste nécessaire ; l'`index.md` peut seulement restreindre le périmètre.
-- **Fraîcheur :** Un `index.md` est un instantané daté (voir la ligne « Généré le … » en tête). S'il date de plus de **7 jours**, le considérer comme indicatif et proposer de le régénérer (`python scripts/index_folder.py "<dossier>"`) avant de s'y fier. S'il est absent, procéder par recherche normale (et éventuellement proposer de l'indexer).
+## Index des dossiers (`index.md` curé / `index-auto.md` auto-généré)
+- **Deux fichiers distincts :**
+  - `index.md` — **table des matières curée**, écrite à la main : présente le projet et oriente la navigation (points d'entrée, sens de l'organisation). C'est l'« index » de la structure standard d'un projet.
+  - `index-auto.md` — **index exhaustif auto-généré** par `scripts/index_folder.py` (ou `run_daily_index.py`) : liste noms, chemins, types, tailles et dates de tout le contenu. Pour **localiser** un fichier ou connaître la structure brute d'un répertoire, lire d'abord l'`index-auto.md` présent plutôt que lancer un `Glob` exhaustif.
+- **Limite — contenu :** L'`index-auto.md` n'indexe PAS le contenu des fichiers. Pour chercher une chaîne, une fonction ou un motif à l'intérieur des fichiers, un `Grep` sur les vrais fichiers reste nécessaire ; l'`index-auto.md` peut seulement restreindre le périmètre.
+- **Fraîcheur :** L'`index-auto.md` est un instantané daté (voir la ligne « Généré le … » en tête). S'il date de plus de **7 jours**, le considérer comme indicatif et proposer de le régénérer (`python scripts/index_folder.py "<dossier>" --output "<dossier>/index-auto.md"`) avant de s'y fier. S'il est absent, procéder par recherche normale.
+- **Ne pas écraser la TOC :** `index_folder.py` écrit `index.md` par défaut ; toujours passer `--output index-auto.md` pour ne pas écraser la table des matières curée.
 
 ## Structure standard d'un projet
 
 Tout nouveau projet doit être initialisé avec les éléments suivants à la racine :
 
 - `readme.md` — description du projet (contexte, objectif, organisation) et description du contenu du dossier
-- `index.md` — table des matières du projet (voir section "Index des dossiers")
+- `index.md` — table des matières curée du projet, écrite à la main (voir section "Index des dossiers")
 - `TODO.md` — liste des tâches courantes
 - `journal/` — notes horodatées (voir section "Dossier journal")
 - `todo/` — archive journalisée des TODO (voir section "Dossier todo")
