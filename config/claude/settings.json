@@ -101,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /c/Users/Guillaume/.claude/debug-userpromptsubmit.sh"
+            "command": "bash /c/Users/Guillaume/.claude/prompt-reminder-hook.sh"
           }
         ]
       }
