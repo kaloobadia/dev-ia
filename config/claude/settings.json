@@ -94,6 +94,17 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /c/Users/Guillaume/.claude/debug-userpromptsubmit.sh"
+          }
+        ]
+      }
     ]
   },
   "worktree": {
