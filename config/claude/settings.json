@@ -116,8 +116,8 @@
     "command": "bash /c/Users/Guillaume/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "code-review@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true
+    "code-review@claude-plugins-official": false,
+    "frontend-design@claude-plugins-official": false
   },
   "effortLevel": "low",
   "promptSuggestionEnabled": false,
