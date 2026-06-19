@@ -48,7 +48,7 @@ Tout nouveau projet doit être initialisé avec les éléments suivants à la ra
 ## Convention d'archive
 - **Un seul motif :** un dossier `archives/` (pluriel, nu) à la racine de chaque vault. Pas de variantes (`archive/` singulier, `archives-<projet>/`, ni sous-dossiers à préfixe redondant).
 - **Sous-dossiers nus par section :** `archives/journal/`, `archives/ressources/`, `archives/docs/`, etc. — sans répéter le nom du projet.
-- **Archive froide du méta-projet :** `~/Documents/archives/` (projets clôturés ou dormants).
+- **Projet clôturé : reste dans son domaine.** Un projet clôturé ou dormant n'est pas déraciné vers une archive froide externe. Il demeure dans le dossier de son domaine, à sa place habituelle, et son statut clôturé est signalé par une mention dans son `readme.md`. Révision du 2026-06-19 remplaçant l'ancienne règle d'archive froide `~/Documents/archives/` pour les projets clôturés : ce dossier ne reçoit PAS les projets eux-mêmes mais tient un **index des chantiers clôturés ou dormants** (mention de chaque projet + pointeur vers son emplacement réel dans son domaine), afin d'offrir aux IA et à l'utilisateur une vue d'état rapide des chantiers.
 - **Hors index quotidien :** `run_daily_index.py` passe `--exclude archives`, qui exclut tout dossier nommé `archives` à n'importe quel niveau ; le contenu archivé n'alourdit donc pas `index-auto.md`.
 
 ## Dossier journal (transverse à tous les projets)
