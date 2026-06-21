@@ -102,6 +102,10 @@ Hiérarchie applicable lors de la planification d'un TODO et de la délégation 
 
 Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, regex, caractères accentués, conventions projet), ce qui est incompatible avec la Rule 12 "Fail loud" ci-dessous. Sonnet (low) conserve l'intelligence du modèle tout en réduisant le coût d'environ 60-70% par rapport à Opus.
 
+## Niveau de rigueur par défaut
+
+Évaluation franchement équilibrée : exposer les vraies forces et les vraies faiblesses à poids comparable, ouvrir sur une lecture pondérée plutôt que sur les problèmes. Signaler les points faibles principaux sans s'y appesantir. Ne pas se borner à valider, mais ne pas non plus chercher activement à casser l'idée (ce serait un cran adverse, à n'activer que sur demande ponctuelle).
+
 ## 12 règles de programmation 
 
 cf. Karpathy Guidelines 12 Rules @ https://gist.github.com/Planxnx/64b173bacf2c8c43435c4333d0b9bd94
