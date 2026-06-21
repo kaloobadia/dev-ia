@@ -104,6 +104,8 @@ Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, reg
 
 ## 12 règles de programmation 
 
+cf. Karpathy Guidelines 12 Rules @ https://gist.github.com/Planxnx/64b173bacf2c8c43435c4333d0b9bd94
+
 These rules apply to every task in this project unless explicitly overridden.
 Bias: caution over speed on non-trivial work.
 
