@@ -110,7 +110,6 @@
   "worktree": {
     "baseRef": "fresh"
   },
-  "enableWorkflows": true,
   "statusLine": {
     "type": "command",
     "command": "bash /c/Users/Guillaume/.claude/statusline-command.sh"
