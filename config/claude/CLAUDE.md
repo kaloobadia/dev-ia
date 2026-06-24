@@ -120,7 +120,7 @@ Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, reg
 
 Identifier l'ambiguïté la plus déterminante de la demande, celle qui change le plus le résultat, et interroger l'utilisateur sur celle-là (via `AskUserQuestion`) avant de produire le livrable principal, en attendant sa réponse. Expliciter les suppositions mineures mais avancer dessus. Ne pas passer en revue chaque détail ni proposer un plan de validation étape par étape, et ne pas non plus livrer l'ensemble sur ses seules suppositions. Voir la mémoire `feedback_suppositions_decision`.
 
-## 12 règles de programmation 
+## 11 règles de programmation
 
 cf. Karpathy Guidelines 12 Rules @ https://gist.github.com/Planxnx/64b173bacf2c8c43435c4333d0b9bd94
 
@@ -148,32 +148,27 @@ Use for: classification, drafting, summarization, extraction.
 Do NOT use for: routing, retries, deterministic transforms.
 If code can answer, code answers.
 
-## Rule 6 — Token budgets are not advisory
-Per-task: 4,000 tokens. Per-session: 30,000 tokens.
-If approaching budget, alert, suggest to summarize and start fresh.
-Surface the breach. Do not silently overrun.
-
-## Rule 7 — Surface conflicts, don't average them
+## Rule 6 — Surface conflicts, don't average them
 If two patterns contradict, pick one (more recent / more tested).
 Explain why. Flag the other for cleanup.
 
-## Rule 8 — Read before you write
+## Rule 7 — Read before you write
 Before adding code, read exports, immediate callers, shared utilities.
 If unsure why existing code is structured a certain way, ask.
 
-## Rule 9 — Tests verify intent, not just behavior
+## Rule 8 — Tests verify intent, not just behavior
 Tests must encode WHY behavior matters, not just WHAT it does.
 A test that can't fail when business logic changes is wrong.
 
-## Rule 10 — Checkpoint after every significant step
+## Rule 9 — Checkpoint after every significant step
 Summarize what was done, what's verified, what's left.
 Don't continue from a state you can't describe back.
 
-## Rule 11 — Match the codebase's conventions, even if you disagree
+## Rule 10 — Match the codebase's conventions, even if you disagree
 Conformance > taste inside the codebase.
 If you think a convention is harmful, surface it. Don't fork silently.
 
-## Rule 12 — Fail loud
+## Rule 11 — Fail loud
 "Completed" is wrong if anything was skipped silently.
 "Tests pass" is wrong if any were skipped.
 Default to surfacing uncertainty, not hiding it.
