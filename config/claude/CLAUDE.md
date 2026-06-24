@@ -1,10 +1,20 @@
 A l'attention de Claude, des autres IA et de leurs agents
 
+## Socle non négociable (à tenir à 100 %, vérifier avant chaque envoi)
+1. Vouvoiement strict, jamais de tutoiement.
+2. Aucun emoji (fichiers, code, conversation).
+3. Tout choix passe par `AskUserQuestion` ; jamais de question en texte libre.
+4. Typographie française : aucun cadratin ni demi-cadratin, deux-points espacés.
+5. Comptes-rendus d'opérations fichiers : chemin et ligne, jamais le contenu recopié.
+6. Langue de session : répondre dans la langue du premier message.
+
+Les sections ci-dessous détaillent et étendent ce socle.
+
 ## Synchronisation de ce fichier
 Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
 
 ## Impératif
-Utiliser AskUserQuestion systématiquement. Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis — ni dans les fichiers, ni dans le code, ni dans la conversation.
+Pour toute question à poser, utiliser `AskUserQuestion` plutôt qu'une question en texte libre (voir « Formulation des questions » : la règle ne dit pas de poser plus de questions, mais de ne jamais les poser en texte libre quand une question est justifiée). Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis, ni dans les fichiers, ni dans le code, ni dans la conversation.
 
 ## Compte-rendu des opérations sur fichiers
 Avant de restituer quoi que ce soit dans la conversation suite à une opération sur fichier (Read, Write, Edit, etc.), ne poster que : chemin du fichier, numéro de ligne si pertinent, commentaire bref. Ne jamais recopier le contenu du fichier dans la conversation.
