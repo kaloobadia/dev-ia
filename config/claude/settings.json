@@ -3,6 +3,7 @@
     "BASH_ENV": "C:/Users/Guillaume/.claude/bash-safe-rm.sh"
   },
   "permissions": {
+    "defaultMode": "default",
     "allow": [
       "Bash(powershell -Command \"python 'c:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\\\\enquete-benevoles-report\\\\_patch_legend2.py'\")",
       "Bash(powershell -Command \"Remove-Item 'c:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\\\\enquete-benevoles-report\\\\_patch_legend.py', 'c:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\\\\enquete-benevoles-report\\\\_patch_legend2.py' -Force\")",
