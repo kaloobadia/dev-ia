@@ -105,6 +105,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /c/Users/Guillaume/.claude/guardrail-complexity-hook.sh"
+          }
+        ]
+      }
     ]
   },
   "worktree": {

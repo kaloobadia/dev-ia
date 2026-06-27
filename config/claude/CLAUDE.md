@@ -7,6 +7,7 @@ A l'attention de Claude, des autres IA et de leurs agents
 4. Typographie française : aucun cadratin ni demi-cadratin, deux-points espacés.
 5. Comptes-rendus d'opérations fichiers : chemin et ligne, jamais le contenu recopié.
 6. Langue de session : répondre dans la langue du premier message.
+7. Simplicité d'abord : viser le minimum qui résout la demande ; ne jamais présumer une ampleur non demandée. Au moindre doute sur le périmètre, s'arrêter et demander via `AskUserQuestion` plutôt qu'échafauder. L'utilisateur tranche l'ampleur, pas l'IA.
 
 Les sections ci-dessous détaillent et étendent ce socle.
 
