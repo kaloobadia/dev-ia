@@ -214,9 +214,9 @@ Pour chaque mémoire cochée, appliquer la section "Persistance d'une entrée jo
 
 Si la synthèse Obsidian est cochée, lui ajouter en fin de fichier la section "État des TODO" (voir ci-dessous).
 
-Mettre à jour `Dashboard.md` **une seule fois** (voir section "Mise à jour de Dashboard.md") :
+Mettre à jour les Dashboard **une seule fois** (voir section "Mise à jour des Dashboard") :
 
-- si les deux mémoires sont produites, combiner les prochaines étapes des deux documents et pointer la synthèse Obsidian comme dernière synthèse (mémoire utilisateur, prioritaire pour Obsidian) ;
+- si les deux mémoires sont produites, pointer la synthèse Obsidian comme dernière synthèse (mémoire utilisateur, prioritaire pour Obsidian) ;
 - si une seule est produite, pointer celle-là.
 
 ---
@@ -306,36 +306,40 @@ Les lire et ajouter en fin de fichier de synthèse une section résumant l'état
 
 ---
 
-## Mise à jour de Dashboard.md
+## Mise à jour des Dashboard
 
-Fichier : `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md`
+Depuis le 27/06/2026, `/synthese` ne réécrit plus aucun Dashboard à la main. Les trois Dashboard (hub dev `dev/atelier/Dashboard.md`, hub métiers du livre `metiers-du-livre/Dashboard.md`, racine méta-projet `~/Documents/Dashboard.md`) sont **régénérés de façon déterministe** par `dev/scripts/update_dashboard.py`, qui dérive le domaine de chaque projet depuis les liens de hub des `index.md`. Le rôle de `/synthese` se réduit à deux gestes.
 
-### Ce qu'il faut mettre à jour
+### Geste 1 — Mettre à jour la source de vérité
 
-#### 1. Frontmatter `updated`
+Source unique : `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md`.
 
-Remplacer la date par aujourd'hui au format `YYYY-MM-DD`.
+Dans le tableau principal (en-tête `| Project | Last synthesis | Date | Link |`), repérer la ligne dont la première colonne est le nom du projet courant (= nom du dossier projet, ex. `master-mavinum-alternance`).
 
-#### 2. Lien "Aujourd'hui"
+- **Si la ligne existe** : remplacer son titre, sa date et son lien.
+- **Si elle n'existe pas** : ajouter une nouvelle ligne.
 
-Calculer la date du jour en heure de Paris (même commande que pour l'horodatage) et reconstruire :
+Format de la ligne (les quatre colonnes sont obligatoires, sinon le script ignore la ligne) :
 
-- Lien interne Obsidian : `[[journal/YYYY/MM/DD/YYMMDD|Note du YYYY-MM-DD]]`
-- Exemple pour le 2026-05-09 : `[[journal/2026/05/09/260509|Note du 2026-05-09]]`
+```text
+| <projet> | <titre de la synthèse> | <YYYY-MM-DD> | [open](obsidian://open?vault=<projet>&file=<chemin-encodé sans .md>) |
+```
 
-#### 3. Section du projet courant
+- La **date** doit être au format ISO `YYYY-MM-DD` (heure de Paris). Le script s'en sert pour la fenêtre de fraîcheur de 7 jours du Dashboard racine ; toute autre forme reléguerait le projet en fin de liste.
+- Le **chemin** du lien encode `/` en `%2F` et **omet** l'extension `.md` (ex. `journal%2F26%2F06%2F27%2F260627-02h48-synthese-journal`). Pointer la note prioritaire : la synthèse Obsidian si elle a été produite, sinon le résumé de session.
+- Ne pas toucher aux autres lignes ni à la section `## Global`.
 
-Identifier le bloc `### <nom-du-projet>` correspondant au projet en cours de session, et mettre à jour :
+Aucune section « Prochaines étapes » à écrire ici : `update_dashboard.py` l'extrait lui-même de la note de synthèse liée (section `## Prochaines étapes`), avec repli sur les notes sœurs du même dossier.
 
-- **Dernière synthèse** : nouveau lien `obsidian://open?vault=<nom-du-vault>&file=<chemin-encodé>` + date
-- **Prochaines étapes** : extraites du résumé/synthèse que l'on vient de produire
+### Geste 2 — Régénérer les Dashboard
 
-Le nom du vault correspond au nom du dossier projet (ex: `enquete-benevoles-report`).
+Lancer le script en remplacement direct :
 
-### Ce qu'il ne faut PAS modifier
+```bash
+python "C:\Users\Guillaume\Documents\dev\scripts\update_dashboard.py" --inplace
+```
 
-- Les autres blocs `### <projet>` — ne pas toucher aux projets non concernés par la session en cours.
-- La section "Ressources" — stable, ne pas modifier automatiquement.
+Le script réécrit les trois `Dashboard.md` (routage par domaine automatique). Vérifier sa sortie : il journalise le nombre de projets par domaine et tout repli « Prochaines étapes ». En cas de `non classé` inattendu, le projet n'est listé dans aucun `index.md` de hub (le rattacher en l'ajoutant à la section « Projets actifs » ou « Dormants » de l'`index.md` du hub voulu), ne pas corriger le Dashboard à la main.
 
 ---
 
