@@ -56,12 +56,41 @@ def read_jsonl_tokens(path):
             t_out   += u.get('output_tokens', 0)
     return t_new, t_cache, t_out
 
+# Nombre de tours (messages utilisateur reels) dans la session
+def count_turns(path):
+    n = 0
+    with open(path, encoding='utf-8', errors='replace') as tf:
+        for tline in tf:
+            tline = tline.strip()
+            if not tline:
+                continue
+            try:
+                entry = json.loads(tline)
+            except Exception:
+                continue
+            if entry.get('type') != 'user':
+                continue
+            if entry.get('isMeta') or entry.get('isCompactSummary'):
+                continue
+            content = entry.get('message', {}).get('content')
+            # Exclure les tool_result (qui sont aussi de type 'user')
+            if isinstance(content, list):
+                if any(isinstance(b, dict) and b.get('type') == 'tool_result' for b in content):
+                    continue
+            n += 1
+    return n
+
 # Tokens cumules session
 transcript_path = d.get('transcript_path')
 total_new = total_cache = total_out = None
+turns = None
 if transcript_path:
     try:
         total_new, total_cache, total_out = read_jsonl_tokens(transcript_path)
+    except Exception:
+        pass
+    try:
+        turns = count_turns(transcript_path)
     except Exception:
         pass
 
@@ -135,11 +164,15 @@ if "  " in dt:
 else:
     dt_s = dt
 
+turns_str = f"tours {WHITE}{turns}{RESET}" if turns is not None else ""
+
 parts = [
     f"{WHITE}{model}{RESET}",
     f"ctx {YELLOW}{ctx}{RESET}",
-    tok_str,
 ]
+if turns_str:
+    parts.append(turns_str)
+parts.append(tok_str)
 if session_tok_str:
     parts.append(session_tok_str)
 if day_tok_str:

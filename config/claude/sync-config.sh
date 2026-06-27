@@ -10,6 +10,11 @@ REPO="/c/Users/Guillaume/Documents/dev/IA"
 cp "$SRC/CLAUDE.md"     "$DEST/CLAUDE.md"     2>/dev/null
 cp "$SRC/settings.json" "$DEST/settings.json" 2>/dev/null
 
+# Sync des scripts de hooks et utilitaires (.sh a la racine de ~/.claude)
+for sh in "$SRC"/*.sh; do
+  [ -f "$sh" ] && cp "$sh" "$DEST/"
+done
+
 # Sync dossiers (cp + suppression des fichiers obsolètes)
 sync_dir() {
   local src="$1" dest="$2"
