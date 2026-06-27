@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# DESARME le 27/06/2026 : script conserve mais NON branche dans settings.json,
+# car le mode permission "ask" (permissions.defaultMode) couvre deja le besoin.
+# Pour le RE-ARMER : 1) rajouter le bloc PreToolUse (matcher "Write") dans
+# settings.json pointant vers ce script ; 2) restaurer la remise a zero du
+# compteur dans prompt-reminder-hook.sh (suppression des fichiers d'etat
+# newfiles-<session>.txt et fired-<session>.txt au debut de chaque tour).
+#
 # Hook PreToolUse (matcher Write) : garde-fou contre la sur-ingenierie.
 # Compte les fichiers REELLEMENT nouveaux crees dans le tour courant.
 # Au-dela du seuil, bloque UNE fois (exit 2) pour forcer une pause et un

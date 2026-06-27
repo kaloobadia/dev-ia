@@ -17,16 +17,6 @@ except Exception:
 
 transcript_path = data.get('transcript_path')
 
-# Remise a zero du garde-fou complexite (voir guardrail-complexity-hook.sh) :
-# chaque nouveau message ouvre un tour neuf.
-session = data.get('session_id') or 'default'
-state_dir = os.path.expanduser('~/.claude/.state')
-for _nom in (f'newfiles-{session}.txt', f'fired-{session}.txt'):
-    try:
-        os.remove(os.path.join(state_dir, _nom))
-    except OSError:
-        pass
-
 SEUIL_TOKENS = 80000
 TAIL_BYTES = 2_000_000
 
