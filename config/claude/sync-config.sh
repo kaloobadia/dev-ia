@@ -3,8 +3,8 @@
 # Appelé par le hook Stop de Claude Code.
 
 SRC="$HOME/.claude"
-DEST="/c/Users/Guillaume/Documents/dev/IA/config/claude"
-REPO="/c/Users/Guillaume/Documents/dev/IA"
+DEST="/c/Users/Guillaume/Documents/chantiers/dev/IA/config/claude"
+REPO="/c/Users/Guillaume/Documents/chantiers/dev/IA"
 
 # Sync fichiers plats
 cp "$SRC/CLAUDE.md"     "$DEST/CLAUDE.md"     2>/dev/null

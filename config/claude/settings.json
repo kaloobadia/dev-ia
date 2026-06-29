@@ -43,7 +43,7 @@
       "Bash(git mv *)",
       "Bash(python3 -)",
       "Bash(python -)",
-      "Bash(mkdir -p \"C:/Users/Guillaume/Documents/dev/IA/instructions\")",
+      "Bash(mkdir -p \"C:/Users/Guillaume/Documents/chantiers/dev/IA/instructions\")",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Guillaume\\\\Documents\\\\dev\" -Recurse -Filter \"*convention*\")",
       "Bash(Select-Object FullName, Length)",
       "Bash(ConvertTo-Json)",
@@ -78,9 +78,9 @@
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier\\ressources",
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier",
       "c:\\Users\\Guillaume\\Documents\\dev\\enquete-benevoles-report",
-      "C:\\Users\\Guillaume\\Documents\\dev\\IA\\workflow\\instructions",
+      "C:\\Users\\Guillaume\\Documents\\chantiers\\dev\\IA\\workflow\\instructions",
       "C:\\Users\\Guillaume\\.claude",
-      "C:\\Users\\Guillaume\\Documents\\dev\\IA"
+      "C:\\Users\\Guillaume\\Documents\\chantiers\\dev\\IA"
     ]
   },
   "model": "opus",

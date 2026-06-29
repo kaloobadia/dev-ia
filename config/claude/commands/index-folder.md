@@ -36,7 +36,7 @@ Utiliser `AskUserQuestion` avec les options :
 Pour chaque dossier retenu, exécuter :
 
 ```bash
-python "C:/Users/Guillaume/Documents/dev/scripts/index_folder.py" "<dossier>"
+python "C:/Users/Guillaume/Documents/chantiers/dev/scripts/index_folder.py" "<dossier>"
 ```
 
 Options disponibles si l'utilisateur les précise :

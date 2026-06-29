@@ -181,8 +181,8 @@ Note : ces réglages alignent Obsidian sur la structure du projet (`journal/YY/M
 ### Étape 6 — Mise à jour Dashboard (optionnel)
 
 Proposer d'ajouter le projet dans :
-- `C:\Users\Guillaume\Documents\dev\atelier\ressources\latest-syntheses.md`
-- `C:\Users\Guillaume\Documents\dev\atelier\Dashboard.md`
+- `C:\Users\Guillaume\Documents\chantiers\dev\atelier\ressources\latest-syntheses.md`
+- `C:\Users\Guillaume\Documents\chantiers\dev\atelier\Dashboard.md`
 
 Utiliser `AskUserQuestion` : "Ajouter ce projet au Dashboard Obsidian ?" — options : Oui / Passer.
 
@@ -196,4 +196,4 @@ Si Oui :
 
 Toute modification doit être répercutée dans :
 - `~/.claude/commands/init-obsidian.md` (primaire)
-- `C:\Users\Guillaume\Documents\dev\IA\config\claude\commands\init-obsidian.md` (copie versionnée)
+- `C:\Users\Guillaume\Documents\chantiers\dev\IA\config\claude\commands\init-obsidian.md` (copie versionnée)

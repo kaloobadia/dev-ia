@@ -12,7 +12,7 @@ A l'attention de Claude, des autres IA et de leurs agents
 Les sections ci-dessous détaillent et étendent ce socle.
 
 ## Synchronisation de ce fichier
-Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
+Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `chantiers/dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
 
 ## Impératif
 Pour toute question à poser, utiliser `AskUserQuestion` plutôt qu'une question en texte libre (voir « Formulation des questions » : la règle ne dit pas de poser plus de questions, mais de ne jamais les poser en texte libre quand une question est justifiée). Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis, ni dans les fichiers, ni dans le code, ni dans la conversation.
@@ -79,10 +79,6 @@ Tout nouveau projet doit être initialisé avec les éléments suivants à la ra
   Note de journal — création le JJ/MM/AAAA à HHhMM, dernière mise à jour le JJ/MM/AAAA à HHhMM
   ```
   Cette structure satisfait MD041 (H1 en première ligne) et évite MD036 (horodatage en texte brut, pas directement sous un heading). La date de mise à jour est identique à la date de création lors de la première écriture.
-
-## Point d'étape
-- **Définition :** pause avant ou après un point critique dans le développement du code.
-- **Procédure :** invoquer la skill `/etape`. Voir `~/.claude/commands/etape.md` pour le détail des 5 étapes.
 
 ## Règle stricte pour le Mode Plan (Planning Mode)
 1. **Validation stricte :** La validation d'un plan par l'utilisateur approuve *uniquement* la conception théorique. Cela ne vaut **jamais** pour une autorisation d'implémentation.
