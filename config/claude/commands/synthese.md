@@ -93,4 +93,4 @@ Dans le tableau principal (`| Project | Last synthesis | Date | Link |`), repér
 python "C:\Users\Guillaume\Documents\chantiers\dev\scripts\update_dashboard.py" --inplace
 ```
 
-Le script réécrit les trois `Dashboard.md` (routage par domaine automatique depuis les `index.md` de hub). Vérifier sa sortie. En cas de `non classé` inattendu, rattacher le projet dans la section « Projets actifs » ou « Dormants » de l'`index.md` du hub voulu, ne pas corriger le Dashboard à la main.
+Le script réécrit les trois `Dashboard.md` (routage par domaine automatique depuis les `index-thematique.md` de hub). Vérifier sa sortie. En cas de `non classé` inattendu, rattacher le projet dans la section « Projets actifs » ou « Dormants » de l'`index-thematique.md` du hub voulu, ne pas corriger le Dashboard à la main.

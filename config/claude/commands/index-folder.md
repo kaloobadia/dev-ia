@@ -2,7 +2,7 @@
 
 ## Rôle
 
-Indexe un ou plusieurs sous-dossiers du répertoire courant dans des fichiers `index.md`, via le script `index_folder.py`.
+Indexe un ou plusieurs sous-dossiers du répertoire courant dans des fichiers `index-auto.md`, via le script `index_folder.py`.
 
 Argument optionnel : `/index-folder <chemin>` — si fourni, indexer directement ce dossier sans passer par la sélection interactive.
 
