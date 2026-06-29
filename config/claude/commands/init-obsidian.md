@@ -15,7 +15,7 @@ Initialise un nouveau dossier de projet avec la structure standard. Cette comman
 ├── index-journal.md   ← index des synthèses de session
 ├── TODO.md            ← liste des tâches courantes
 ├── journal/YY/MM/DD/  ← notes horodatées (dossier du jour créé)
-├── todo/YY/MM/DD/     ← archive journalisée des TODO (dossier du jour créé)
+├── archives/todo/YY/MM/DD/  ← archive journalisée des TODO (dossier du jour créé)
 ├── ressources/        ← documents reçus, consignes, références
 └── travaux/           ← productions rendues ou en cours
 ```
@@ -44,7 +44,7 @@ Exécuter les actions suivantes **sans demander** :
 powershell.exe -Command "[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTime]::Now, 'Romance Standard Time').ToString('HH\hmm')"
 powershell.exe -Command "[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTime]::Now, 'Romance Standard Time').ToString('yyMMdd')"
 ```
-4. Identifier les fichiers existants qui n'appartiennent **pas** à la structure standard (c'est-à-dire : tout ce qui n'est pas `journal/`, `todo/`, `ressources/`, `travaux/`, `readme.md`, `index.md`, `index-journal.md`, `TODO.md`).
+4. Identifier les fichiers existants qui n'appartiennent **pas** à la structure standard (c'est-à-dire : tout ce qui n'est pas `journal/`, `archives/`, `ressources/`, `travaux/`, `readme.md`, `index.md`, `index-journal.md`, `TODO.md`).
 
 Puis utiliser `AskUserQuestion` pour recueillir :
 - La description courte du projet (contexte, objectif — servira dans readme.md)
@@ -68,7 +68,7 @@ Créer les dossiers manquants :
 - `ressources/`
 - `travaux/`
 - `journal/YY/MM/DD/` (dossier du jour, date Paris)
-- `todo/YY/MM/DD/` (dossier du jour, date Paris)
+- `archives/todo/YY/MM/DD/` (dossier du jour, date Paris)
 
 **3b — Déplacement des fichiers existants**
 Si confirmé à l'étape 1 : déplacer les fichiers non-standard dans `ressources/`.

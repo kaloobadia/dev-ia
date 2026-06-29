@@ -52,7 +52,7 @@ Tout nouveau projet doit être initialisé avec les éléments suivants à la ra
 - `index.md` — table des matières curée du projet, écrite à la main (voir section "Index des dossiers")
 - `TODO.md` — liste des tâches courantes
 - `journal/` — notes horodatées (voir section "Dossier journal")
-- `todo/` — archive journalisée des TODO (voir section "Dossier todo")
+- `archives/todo/` — archive journalisée des TODO (voir section "Dossier todo")
 - `ressources/` — documents reçus, sujets, consignes, références
 - `travaux/` — productions rendues ou en cours
 
@@ -67,7 +67,7 @@ Tout nouveau projet doit être initialisé avec les éléments suivants à la ra
 - **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
 
 ## Dossier todo (transverse à tous les projets)
-- **Structure :** Chaque projet comporte un dossier `todo/YY/MM/DD/` créé au fil des jours de travail.
+- **Structure :** Chaque projet comporte un dossier `archives/todo/YY/MM/DD/` créé au fil des jours de travail.
 - **Contenu :** Ce dossier du jour accueille les fichiers TODO archivés, horodatés selon les mêmes conventions que les notes de journal.
 
 ## Fichiers du type "Note de journal"
