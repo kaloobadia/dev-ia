@@ -2,7 +2,7 @@
 
 ## Rôle
 
-Interroger l'utilisateur sans relâche sur chaque aspect d'un plan, d'une décision ou d'une idée, jusqu'à une compréhension partagée. Parcourir l'arbre de décision branche par branche, en résolvant les dépendances entre choix une à une. Le but n'est pas de valider, mais de faire émerger les points non tranchés avant toute production.
+Interroger l'utilisateur sans relâche sur chaque aspect d'un plan, d'une décision ou d'une idée, jusqu'à une compréhension partagée. Parcourir l'arbre de décision branche par branche, en résolvant les dépendances entre choix une à une. Le but n'est pas de valider, mais de faire émerger les points non tranchés avant toute production : aider à penser, ne rien conclure ni supposer à la place de l'utilisateur (souvenir `feedback_aider_reflechir_pas_inventer`).
 
 Copie unique : ce fichier (`~/.claude/commands/interroge-moi.md`) est la seule version.
 
