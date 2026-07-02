@@ -178,18 +178,6 @@ Si Oui, créer le dossier `.obsidian/` avec les fichiers de configuration standa
 
 Note : ces réglages alignent Obsidian sur la structure du projet (`journal/YY/MM/DD/`). Le format `YYYY-MM-DD/YYMMDDHHmm` crée automatiquement un sous-dossier par jour dans `journal/`.
 
-### Étape 6 — Mise à jour Dashboard (optionnel)
-
-Proposer d'ajouter le projet dans :
-- `C:\Users\Guillaume\Documents\chantiers\dev\atelier\ressources\latest-syntheses.md`
-- `C:\Users\Guillaume\Documents\chantiers\dev\atelier\Dashboard.md`
-
-Utiliser `AskUserQuestion` : "Ajouter ce projet au Dashboard Obsidian ?" — options : Oui / Passer.
-
-Si Oui :
-- Ajouter une ligne dans `latest-syntheses.md` (colonnes : Project, Last synthesis, Date, Link — laisser Link vide pour l'instant)
-- Ajouter un bloc `### <nom-du-projet>` dans `Dashboard.md` avec Dernière synthèse, Prochaines étapes et lien TODO
-
 ---
 
 ## Synchronisation de ce fichier
