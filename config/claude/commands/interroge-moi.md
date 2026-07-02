@@ -40,7 +40,7 @@ Continuer jusqu'à ce qu'aucune branche ne reste ouverte.
 
 ### 5 — Restituer la compréhension partagée
 
-Quand l'arbre est entièrement parcouru, restituer une synthèse concise des décisions arrêtées et de leurs justifications. Ne pas enchaîner sur une production : proposer, le cas échéant, d'archiver cette synthèse (fichier de type « note de journal », horodatage heure de Paris) ou de passer à l'étape suivante, sur validation.
+Quand l'arbre est entièrement parcouru, restituer une synthèse concise des décisions arrêtées et de leurs justifications. Ne pas enchaîner sur une production : ne pas présumer que l'utilisateur veut décider ou agir dans le même tour (souvenir `feedback_suppositions_decision`). Proposer, le cas échéant, d'archiver cette synthèse (fichier de type « note de journal », horodatage heure de Paris) ou de passer à l'étape suivante, sur validation.
 
 ## Typologie des questions
 
