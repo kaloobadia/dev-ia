@@ -47,7 +47,7 @@ Quand l'arbre est entièrement parcouru, restituer une synthèse concise des dé
 Choisir consciemment le format `AskUserQuestion` selon la nature du choix :
 
 - **Choix unique parmi plusieurs** (options exclusives) : question simple, `multiSelect: false`. Réponse recommandée en première option.
-- **Options non exclusives** (plusieurs peuvent valoir) : ne pas forcer un choix unique. Demander un classement par priorité, ou utiliser `multiSelect: true` si le cumul a du sens. Voir la mémoire `feedback_question_classement`.
+- **Options non exclusives** (plusieurs peuvent valoir) : ne pas forcer un choix unique. Demander un classement par priorité, ou utiliser `multiSelect: true` si le cumul a du sens. Voir le souvenir `feedback_question_classement`.
 - **Choix ordonné / arbitrage** (priorités, compromis à pondérer) : formuler pour faire ressortir l'ordre, pas une préférence binaire.
 
 Dans tous les cas : jamais de question en texte libre. Si un choix existe, il passe par `AskUserQuestion` ; sinon, trancher soi-même et rapporter.
