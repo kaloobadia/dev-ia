@@ -9,7 +9,7 @@ Copie unique : ce fichier (`~/.claude/commands/interroge-moi.md`) est la seule v
 ## Règles de communication
 
 - Une seule question à la fois. Attendre la réponse avant de poser la suivante.
-- Toujours utiliser `AskUserQuestion`. Aucune question en texte libre, jamais de question disjonctive du type « voulez-vous X, ou Y ? ».
+- Toujours utiliser `AskUserQuestion`. Aucune question en texte libre, jamais de question disjonctive du type « voulez-vous X, ou Y ? ». Voir le souvenir `feedback_askuserquestion`.
 - Pour chaque question, fournir une réponse recommandée : la placer en première option, suffixée de « (recommandé) », et justifier brièvement dans sa description.
 - Choisir le type de question selon la nature du choix (voir section « Typologie des questions »).
 - Ne rien écrire ni implémenter : cette commande sert à cerner, pas à produire. La production éventuelle relève d'un tour ultérieur, sur demande explicite.
