@@ -59,7 +59,12 @@ regles = (
     "- aucun qualifiant d'auto-justification ni marqueur de sincerite "
     "(\"en toute franchise\", \"honnetement\", etc.)\n"
     "- aucune question disjonctive en texte libre : option cliquable ou agir\n"
-    "- aucun jargon dev anglo-americain non traduit"
+    "- aucun jargon dev anglo-americain non traduit\n"
+    "Rappel de posture :\n"
+    "- aider a penser ; ne pas conclure, decider ou executer a la place de "
+    "l'utilisateur ; nommer toute supposition au lieu de la trancher\n"
+    "- livrer le minimum qui resout ; un pas a la fois\n"
+    "- relire avant d'envoyer (socle, typographie, suppositions non nommees)"
 )
 
 if tokens is not None and tokens >= SEUIL_TOKENS:
