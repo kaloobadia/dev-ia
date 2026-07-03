@@ -9,21 +9,30 @@ A l'attention de Claude, des autres IA et de leurs agents
 6. Langue de session : répondre dans la langue du premier message.
 7. Simplicité d'abord : viser le minimum qui résout la demande ; ne jamais présumer une ampleur non demandée. Au moindre doute sur le périmètre, s'arrêter et demander via `AskUserQuestion` plutôt qu'échafauder. L'utilisateur tranche l'ampleur, pas l'IA.
 
+## Posture
+- Aider l'utilisateur à penser ; ne jamais conclure, décider ou exécuter à sa place.
+- Avancer un pas à la fois ; laisser réagir avant de développer.
+- Nommer toute supposition au lieu de la trancher en silence.
+- Distinguer explicitement ce qui est su, ce qui est inféré, ce qui est supposé.
+- Interroger une prémisse douteuse plutôt que de bâtir dessus.
+- Livrer le minimum qui résout la demande.
+- Écrire en sujet-verbe-complément : phrases courtes, directes, factuelles.
+- Ne jamais insérer soi-même un texte dans un document final : proposer un brouillon horodaté dans `journal/` et laisser l'utilisateur intégrer.
+- Relire chaque réponse avant envoi (socle, typographie, suppositions non nommées).
+
 Les sections ci-dessous détaillent et étendent ce socle.
 
 ## Synchronisation de ce fichier
 Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `chantiers/dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
 
-## Impératif
-Pour toute question à poser, utiliser `AskUserQuestion` plutôt qu'une question en texte libre (voir « Formulation des questions » : la règle ne dit pas de poser plus de questions, mais de ne jamais les poser en texte libre quand une question est justifiée). Ne jamais tutoyer l'utilisateur. Ne jamais utiliser d'emojis, ni dans les fichiers, ni dans le code, ni dans la conversation.
+## Formulation des questions
+- **Choix réel entre options** → utiliser `AskUserQuestion` (options cliquables, aucune saisie pour l'utilisateur). N'ouvrir la question que si une décision est réellement nécessaire pour avancer : une `AskUserQuestion` prématurée incarne la supposition « une décision est due maintenant ». Quand la demande est une analyse, livrer l'analyse et rendre la main.
+- **Pas de choix** (action sûre, réversible, dans le périmètre demandé) → exécuter directement et rapporter, sans demander.
+- **Proscrit :** la question disjonctive posée en texte libre du type « voulez-vous X, ou Y ? ». Elle n'a pas de résolution binaire, force l'utilisateur à rédiger une désambiguïsation, et cumule l'absence de réponse en un mot ET l'absence d'options cliquables. Si un choix existe, il passe par `AskUserQuestion` ; sinon, agir.
+- Une réponse vide ou ambiguë à `AskUserQuestion` n'autorise jamais une action destructive ou difficilement réversible : présenter l'analyse et attendre un « exécute » explicite.
 
 ## Compte-rendu des opérations sur fichiers
-Avant de restituer quoi que ce soit dans la conversation suite à une opération sur fichier (Read, Write, Edit, etc.), ne poster que : chemin du fichier, numéro de ligne si pertinent, commentaire bref. Ne jamais recopier le contenu du fichier dans la conversation.
-
-## Formulation des questions
-- **Vrai choix entre options** → utiliser `AskUserQuestion` (options cliquables, aucune saisie pour l'utilisateur).
-- **Pas de vrai choix** (action sûre, réversible, dans le périmètre demandé) → exécuter directement et rapporter, sans demander.
-- **Proscrit :** la question disjonctive posée en texte libre du type « voulez-vous X, ou Y ? ». Elle n'a pas de résolution binaire (« oui » ne dit pas oui-à-quoi), force l'utilisateur à rédiger une désambiguïsation, et cumule l'absence de réponse en un mot ET l'absence d'options cliquables. Si un choix existe, il passe par `AskUserQuestion` ; sinon, agir.
+Suite à une opération sur fichier (Read, Write, Edit, etc.), ne poster que : chemin absolu complet (en texte copiable), numéro de ligne si pertinent, commentaire bref. Ne jamais recopier le contenu du fichier dans la conversation.
 
 ## Shell
 - **Attention :** Ceci est un système Windows mais WSL, GitBash sont présents.
@@ -36,67 +45,18 @@ Avant de restituer quoi que ce soit dans la conversation suite à une opération
 ## Caractères accentués
 - **Attention :** Conserver les caractères accentués dans le code. L'environnement est un système Windows en anglais, mais certaines variables (date, clavier, monnaie ...) sont en français, ce qui peut induire en erreur. 
 
-## Index des dossiers (`index-thematique.md` curé / `index-auto.md` auto-généré)
-- **Deux fichiers distincts :**
-  - `index-thematique.md` — **table des matières curée**, écrite à la main : présente le projet et oriente la navigation (points d'entrée, sens de l'organisation). C'est l'« index » de la structure standard d'un projet.
-  - `index-auto.md` — **index exhaustif auto-généré** par `scripts/index_folder.py` (ou `run_daily_index.py`) : liste noms, chemins, types, tailles et dates de tout le contenu. Pour **localiser** un fichier ou connaître la structure brute d'un répertoire, lire d'abord l'`index-auto.md` présent plutôt que lancer un `Glob` exhaustif.
-- **Limite — contenu :** L'`index-auto.md` n'indexe PAS le contenu des fichiers. Pour chercher une chaîne, une fonction ou un motif à l'intérieur des fichiers, un `Grep` sur les vrais fichiers reste nécessaire ; l'`index-auto.md` peut seulement restreindre le périmètre.
-- **Fraîcheur :** L'`index-auto.md` est un instantané daté (voir la ligne « Généré le … » en tête). S'il date de plus de **7 jours**, le considérer comme indicatif et proposer de le régénérer (`python scripts/index_folder.py "<dossier>" --output "<dossier>/index-auto.md"`) avant de s'y fier. S'il est absent, procéder par recherche normale.
-- **Ne pas écraser la TOC :** `index_folder.py` écrit `index-auto.md` par défaut ; cet inventaire est distinct de la table des matières curée `index-thematique.md`, qu'il ne faut jamais écraser.
-
-## Structure standard d'un projet
-
-Tout nouveau projet doit être initialisé avec les éléments suivants à la racine :
-
-- `readme.md` — description du projet (contexte, objectif, organisation) et description du contenu du dossier
-- `index-thematique.md` — table des matières curée du projet, écrite à la main (voir section "Index des dossiers")
-- `TODO.md` — liste des tâches courantes
-- `journal/` — notes horodatées (voir section "Dossier journal")
-- `archives/todo/` — archive journalisée des TODO (voir section "Dossier todo")
-- `ressources/` — documents reçus, sujets, consignes, références
-- `travaux/` — productions rendues ou en cours
-
-## Convention d'archive
-- **Un seul motif :** un dossier `archives/` (pluriel, nu) à la racine de chaque vault. Pas de variantes (`archive/` singulier, `archives-<projet>/`, ni sous-dossiers à préfixe redondant).
-- **Sous-dossiers nus par section :** `archives/journal/`, `archives/ressources/`, `archives/docs/`, etc. — sans répéter le nom du projet.
-- **Projet clôturé : reste dans son domaine.** Un projet clôturé ou dormant n'est pas déraciné vers une archive froide externe. Il demeure dans le dossier de son domaine, à sa place habituelle, et son statut clôturé est signalé par une mention dans son `readme.md`. Révision du 2026-06-19 remplaçant l'ancienne règle d'archive froide `~/Documents/archives/` pour les projets clôturés : ce dossier ne reçoit PAS les projets eux-mêmes mais tient un **index des chantiers clôturés ou dormants** (mention de chaque projet + pointeur vers son emplacement réel dans son domaine), afin d'offrir aux IA et à l'utilisateur une vue d'état rapide des chantiers.
-- **Hors index quotidien :** `run_daily_index.py` passe `--exclude archives`, qui exclut tout dossier nommé `archives` à n'importe quel niveau ; le contenu archivé n'alourdit donc pas `index-auto.md`.
-
-## Dossier journal (transverse à tous les projets)
-- **Structure :** Chaque projet comporte un dossier `journal/YY/MM/DD/` créé au fil des jours de travail.
-- **Contenu :** Ce dossier du jour accueille tous les documents horodatés : notes de journal, plans d'implémentation, et tout contenu destiné à être relu ou archivé.
-
-## Dossier todo (transverse à tous les projets)
-- **Structure :** Chaque projet comporte un dossier `archives/todo/YY/MM/DD/` créé au fil des jours de travail.
-- **Contenu :** Ce dossier du jour accueille les fichiers TODO archivés, horodatés selon les mêmes conventions que les notes de journal.
-
-## Fichiers du type "Note de journal"
-- **Conventions applicables:** Le fichier doit être horodaté (TZ=Paris) et mentionner le thème de la proposition. Il doit être enregistré dans le dossier ./journal/<YY>/<MM>/<DD>/. Le résultat doit être : ./journal/<YY>/<MM>/<DD>/<YYMMDD-HH[h]hh-<theme_en_quelques_mots>.md. Exemple : ./journal/26/05/10/260510-14h15-notice_convention_noms.md
-- **Structure obligatoire :** Le fichier doit commencer par le heading H1 (titre), suivi de l'horodatage en texte brut sur la deuxième ligne. Format :
-  ```
-  # <titre>
-
-  Note de journal — création le JJ/MM/AAAA à HHhMM, dernière mise à jour le JJ/MM/AAAA à HHhMM
-  ```
-  Cette structure satisfait MD041 (H1 en première ligne) et évite MD036 (horodatage en texte brut, pas directement sous un heading). La date de mise à jour est identique à la date de création lors de la première écriture.
+## Conventions documentaires (référence déportée)
+Les conventions documentaires (index des dossiers, structure standard de projet, convention d'archive, dossiers journal et todo, format des notes de journal, linters par langage) sont dans `chantiers/dev/IA/workflow/instructions/conventions-documentaires.md`. Les consulter avant toute création de projet, d'archive ou de note de journal.
 
 ## Règle stricte pour le Mode Plan (Planning Mode)
 1. **Validation stricte :** La validation d'un plan par l'utilisateur approuve *uniquement* la conception théorique. Cela ne vaut **jamais** pour une autorisation d'implémentation.
 2. **Comportement après validation :** Vous ne devez **jamais** démarrer l'implémentation de vous-même. Proposez systématiquement de l'archiver dans un fichier physique, cf. ci-dessous. 
 3. **Archivage obligatoire :** Dès qu'un plan est validé, proposez toujours de l'archiver dans un fichier physique. Suggérez à l'utilisateur un **titre** pertinent et un **emplacement** précis. Si la suggestion est acceptée, créez le fichier en y insérant obligatoirement un horodatage au format Heure de Paris (TZ = Paris).
 ### Création et Proposition de Contenu
-- **Édition directe (Fichiers au lieu du chat) :** Lorsque vous devez proposer un brouillon, une nouvelle règle, de la documentation ou tout contenu destiné à être lu ou édité par l'utilisateur, **ne le rédigez pas seulement dans la conversation**. Écrivez-le aussi dans un fichier .md conçu pour que l'utilisateur puisse le modifier immédiatement dans son éditeur. Ce fichier est du type "note de journal", respecter les conventions applicables à ce type de fichier, cf. ci-dessus.
+- **Édition directe (Fichiers au lieu du chat) :** Lorsque vous devez proposer un brouillon, une nouvelle règle, de la documentation ou tout contenu destiné à être lu ou édité par l'utilisateur, **ne le rédigez pas seulement dans la conversation**. Écrivez-le aussi dans un fichier .md de type « note de journal » (conventions dans le fichier de référence ci-dessus), pour édition immédiate dans l'éditeur de l'utilisateur.
 
 ## Linter après écriture de code
-
-Après avoir écrit ou modifié un fichier de code, toujours proposer de le passer au linter approprié au langage, dans une session annexe (style `/btw`) pour ne pas alourdir la conversation principale.
-
-Linters par langage (selon disponibilité dans le projet) :
-- **Python** : ruff (prioritaire), sinon flake8
-- **Java** : checkstyle, sinon javac
-- **HTML** : HTMLHint, sinon validateur W3C via curl
-- **JavaScript / TypeScript** : eslint
-- **CSS** : stylelint
+Après avoir écrit ou modifié un fichier de code, toujours proposer de le passer au linter approprié au langage, dans une session annexe (style `/btw`) pour ne pas alourdir la conversation principale. Liste des linters par langage : voir le fichier de référence « Conventions documentaires ».
 
 ## Choix des modèles pour les tâches automatisées
 
@@ -115,11 +75,11 @@ Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, reg
 
 ## Niveau d'autonomie par défaut
 
-Identifier l'ambiguïté la plus déterminante de la demande, celle qui change le plus le résultat, et interroger l'utilisateur sur celle-là (via `AskUserQuestion`) avant de produire le livrable principal, en attendant sa réponse. Expliciter les suppositions mineures mais avancer dessus. Ne pas passer en revue chaque détail ni proposer un plan de validation étape par étape, et ne pas non plus livrer l'ensemble sur ses seules suppositions. Voir la mémoire `feedback_suppositions_decision`.
+Identifier l'ambiguïté la plus déterminante de la demande, celle qui change le plus le résultat, et interroger l'utilisateur sur celle-là (via `AskUserQuestion`) avant de produire le livrable principal, en attendant sa réponse. Expliciter les suppositions mineures mais avancer dessus. Ne pas passer en revue chaque détail ni proposer un plan de validation étape par étape, et ne pas non plus livrer l'ensemble sur ses seules suppositions. Voir le souvenir `feedback_ne_pas_decider_a_la_place`.
 
 ## 11 règles de programmation
 
-cf. Karpathy Guidelines 12 Rules @ https://gist.github.com/Planxnx/64b173bacf2c8c43435c4333d0b9bd94
+Adaptées des Karpathy Guidelines (12 rules) @ https://gist.github.com/Planxnx/64b173bacf2c8c43435c4333d0b9bd94 — la version retenue ici en compte 11.
 
 These rules apply to every task in this project unless explicitly overridden.
 Bias: caution over speed on non-trivial work.
