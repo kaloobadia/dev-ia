@@ -17,7 +17,7 @@ except Exception:
 
 transcript_path = data.get('transcript_path')
 
-SEUIL_TOKENS = 80000
+SEUIL_TOKENS = 100000
 TAIL_BYTES = 2_000_000
 
 def derniere_utilisation(path):
@@ -64,9 +64,10 @@ regles = (
 
 if tokens is not None and tokens >= SEUIL_TOKENS:
     alerte = (
-        f"\nAlerte contexte : ~{tokens // 1000}k tokens dans le dernier tour, "
-        "zone de derive atteinte (80 a 100k). Proposer de clore la session "
-        "et d'en reprendre une neuve."
+        f"\nContexte : ~{tokens // 1000}k tokens au dernier tour (garde-fou : 100k, "
+        "derive reelle observee entre 100k et 150k). Le signaler sobrement a "
+        "l'utilisateur, sans dramatiser ; proposer une session neuve si le "
+        "travail en cours s'y prete."
     )
 else:
     alerte = ""

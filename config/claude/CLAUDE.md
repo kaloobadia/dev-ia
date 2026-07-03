@@ -100,14 +100,14 @@ Linters par langage (selon disponibilité dans le projet) :
 
 ## Choix des modèles pour les tâches automatisées
 
-Hiérarchie applicable lors de la planification d'un TODO et de la délégation à des sous-agents :
+Hiérarchie applicable lors de la planification d'un TODO et de la délégation à des sous-agents (famille Claude 5) :
 
-- **Sonnet (low) = plancher** pour toute tâche automatisée : bugs ponctuels, edits ciblés, validation visuelle, cosmétique mécanique, config statusline, vérifications de fichiers.
-- **Sonnet (medium)** dès qu'il y a implémentation non triviale, rédaction nuancée, refactor modéré.
-- **Opus 4.7** réservé aux agents `Plan` (décisions structurantes) et au diagnostic d'échecs complexes.
+- **Sonnet 5 (low) = plancher** pour toute tâche automatisée : bugs ponctuels, edits ciblés, validation visuelle, cosmétique mécanique, config statusline, vérifications de fichiers.
+- **Sonnet 5 (medium)** dès qu'il y a implémentation non triviale, rédaction nuancée, refactor modéré. Modèle par défaut de l'implémentation courante.
+- **Fable 5** réservé aux sessions de conception (agents `Plan`, décisions structurantes) et au diagnostic d'échecs complexes. Opus 4.8 en repli si Fable 5 est indisponible.
 - **Haiku 4.5** exclu des tâches automatisées. Acceptable uniquement pour des recherches et analyses très ponctuelles et limitées en lecture seule (par exemple via la skill `Explore`).
 
-Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, regex, caractères accentués, conventions projet), ce qui est incompatible avec la Rule 12 "Fail loud" ci-dessous. Sonnet (low) conserve l'intelligence du modèle tout en réduisant le coût d'environ 60-70% par rapport à Opus.
+Raison : Haiku peut simplifier silencieusement ou rater des détails (paths, regex, caractères accentués, conventions projet), ce qui est incompatible avec la Rule 11 "Fail loud" ci-dessous. Sonnet 5 (low) conserve l'intelligence du modèle tout en réduisant le coût par rapport à Fable 5 et Opus.
 
 ## Niveau de rigueur par défaut
 
