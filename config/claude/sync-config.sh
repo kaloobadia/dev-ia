@@ -47,7 +47,7 @@ conclure() {
     exit 1
   fi
   # Plus d'échec en attente : purger le marqueur
-  rm -f "$ERRLOG"
+  [ -f "$ERRLOG" ] && rm -f "$ERRLOG"
   exit 0
 }
 
