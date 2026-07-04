@@ -23,7 +23,7 @@ A l'attention de Claude, des autres IA et de leurs agents
 Les sections ci-dessous détaillent et étendent ce socle.
 
 ## Synchronisation de ce fichier
-Ce fichier `~/.claude/CLAUDE.md` (instructions globales, fait foi, chargé à chaque session) et sa copie versionnée `chantiers/dev/IA/config/claude/CLAUDE.md` doivent rester strictement identiques. Toute modification de l'un doit être répercutée immédiatement dans l'autre (vérifier avec `diff`).
+Depuis le 04/07/2026, `~/.claude/CLAUDE.md` est un lien symbolique vers la source unique versionnée `chantiers/dev/IA/config/claude/CLAUDE.md`. Toute modification se fait donc en un seul endroit. Si le dépôt est déplacé ou renommé, recréer le lien, sinon Claude Code démarrerait sans instructions globales.
 
 ## Formulation des questions
 - **Choix réel entre options** → utiliser `AskUserQuestion` (options cliquables, aucune saisie pour l'utilisateur). N'ouvrir la question que si une décision est réellement nécessaire pour avancer : une `AskUserQuestion` prématurée incarne la supposition « une décision est due maintenant ». Quand la demande est une analyse, livrer l'analyse et rendre la main.

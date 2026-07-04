@@ -15,7 +15,8 @@ signaler() {
 }
 
 # Sync fichiers plats
-cp "$SRC/CLAUDE.md"     "$DEST/CLAUDE.md"     || signaler "cp CLAUDE.md"
+# CLAUDE.md n'est plus copié : ~/.claude/CLAUDE.md est un lien symbolique
+# vers $DEST/CLAUDE.md (source unique versionnée) depuis le 04/07/2026.
 cp "$SRC/settings.json" "$DEST/settings.json" || signaler "cp settings.json"
 
 # Sync des scripts de hooks et utilitaires (.sh a la racine de ~/.claude)
