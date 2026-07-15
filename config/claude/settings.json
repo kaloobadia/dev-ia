@@ -3,7 +3,6 @@
     "BASH_ENV": "C:/Users/Guillaume/.claude/bash-safe-rm.sh"
   },
   "permissions": {
-    "defaultMode": "default",
     "allow": [
       "Read(//c/Users/Guillaume/Documents/Journal/ressources/**)",
       "Read(//c/Users/Guillaume/Documents/Dev/enquete-benevoles-report/**)",
@@ -23,6 +22,7 @@
       "Bash(tasklist)",
       "Bash(powershell.exe -Command \"[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId\\([DateTime]::Now, 'Romance Standard Time'\\).ToString\\('HH\\\\hmm'\\)\")"
     ],
+    "defaultMode": "default",
     "additionalDirectories": [
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier\\ressources",
       "C:\\Users\\Guillaume\\Documents\\dev\\atelier",
@@ -84,6 +84,7 @@
   "theme": "dark",
   "editorMode": "normal",
   "autoCompactEnabled": true,
+  "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true,
-  "switchModelsOnFlag": false
+  "inputNeededNotifEnabled": true
 }
